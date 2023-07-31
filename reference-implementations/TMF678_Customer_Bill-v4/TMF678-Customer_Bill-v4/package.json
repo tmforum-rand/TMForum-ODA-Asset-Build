@@ -1,0 +1,38 @@
+{
+  "name": "api-customerbill",
+  "version": "4.0.0",
+  "description": "## TMF API Reference: TMF 678 - Customer bill Management  ### Release: 19.5 - December 2019  The Customer Bill Management API allows to find and retrieve one or several customer bills (also called invoices) produced for a customer. A customer bill is an electronic or paper document produced at the end of the billing process. The customer bill gathers and displays different items (applied customer billing rates generated during the rating and billing processes) to be charged to a customer. It represents a total amount due for all the products during the billing period and all significant information like dates, bill reference... This API provides also operations to find and retrieve the details of applied customer billing rates presented on a customer bill.  Finally, this API allows to request in real-time a customer bill creation and to manage this request.  ### Resources  - customerBill - appliedCustomerBillingRate - customerBillOnDemand - billingCycle  ### Operations Customer Bill Management API performs the following operations : - Retrieve a customer bill or a collection of customer bills depending on filter criteria. - Partial update of  a customer bill (for administration purposes). -  Retrieve an applied customer billing rate or a collection of applied customer billing rates depending on filter criteria. -  Create a customer bill on demand request, retrieve one or a collection of  customer bill on demand request(s) depending on filter criteria.  - Manage notification of events on customer bill and customer bill on demand.  Copyright © TM Forum 2018. All Rights Reserved.",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.15.2",
+    "cfenv": "^1.0.3",
+    "commander": "^2.6.0",
+    "connect": "^3.2.0",
+    "core-js": "^3.6.5",
+    "express": "^4.15.3",
+    "http-post": "^0.1.1",
+    "http-proxy": "^1.8.1",
+    "js-yaml": "^3.3.0",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.1.1",
+    "query-to-mongo": "^0.9.0",
+    "swagger-tools": "^0.10.4",
+    "swagger-ui-dist": "^3.17.6",
+    "untildify": "^3.0.3",
+    "uuid": "^3.3.2"
+  },
+  "engines": {
+    "node": "12.18.0",
+    "npm": ">=6.14.4"
+  }
+}

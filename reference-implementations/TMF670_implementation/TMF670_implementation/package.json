@@ -1,0 +1,37 @@
+{
+  "name": "payment-method",
+  "version": "4.0.0",
+  "description": "TMF670 Defines a specific method of payment (e.g. direct debit with all details associated) - Main payment method attributes are its type, details, name, description, isPreffered, status, status date Payment Method API performs the following operations on payment method. - Retrieval of a payment method or a collection of payment method depending on filter criteria - Partial update of a payment method - Creation of a payment method  - Notification of events on payment method: o Payment method state change o Payment method change o Payment method created o Payment method deleted   \\n\\n\\nCopyright © TM Forum 2020. All Rights Reserved\\n\\n\\n\" ",
+  "main": "index.js",
+  "scripts": {
+	"prestart": "npm install",
+	"start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cfenv": "^1.0.3",
+    "commander": "^2.6.0",
+    "connect": "^3.2.0",
+    "express": "^4.15.3",
+    "http-post": "^0.1.1",
+    "http-proxy": "^1.8.1",
+    "js-yaml": "^3.3.0",
+    "mongodb": "^3.1.1",
+    "query-to-mongo": "^0.9.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "swagger-tools": "^0.10.4",
+    "swagger-ui-dist": "^3.17.6",
+    "untildify": "^3.0.3",
+    "uuid": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=12.18",
+    "npm": ">=6.14.4"
+  }
+}

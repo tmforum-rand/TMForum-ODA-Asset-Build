@@ -1,0 +1,5 @@
+applications:
+- host: null
+  memory: 256M
+  name: TMF640-ServiceActivation-v4
+  services: [tmf-compose-for-mongodb]

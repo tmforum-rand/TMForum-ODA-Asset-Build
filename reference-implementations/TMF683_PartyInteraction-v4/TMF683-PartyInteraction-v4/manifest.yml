@@ -1,0 +1,6 @@
+applications:
+- name: party-interaction
+  host: 
+  memory: 640M
+  services:
+    - tmf-compose-for-mongodb

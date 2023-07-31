@@ -1,0 +1,5 @@
+applications:
+- host: null
+  memory: 256M
+  name: TMF638-ServiceInventory-v4
+  services: [tmf-compose-for-mongodb]

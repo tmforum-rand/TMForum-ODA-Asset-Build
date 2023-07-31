@@ -1,0 +1,5 @@
+applications:
+- host: null
+  memory: 256M
+  name: TMF654-PrepayBalance-v4
+  services: [tmf-compose-for-mongodb]

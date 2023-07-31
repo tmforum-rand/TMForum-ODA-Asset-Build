@@ -1,0 +1,6 @@
+applications:
+- name: test-data
+  host: 
+  memory: 640M
+  services:
+    - tmf-compose-for-mongodb

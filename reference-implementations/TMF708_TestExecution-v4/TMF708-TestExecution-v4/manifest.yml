@@ -1,0 +1,6 @@
+applications:
+- name: test-execution
+  host: 
+  memory: 640M
+  services:
+    - tmf-compose-for-mongodb
