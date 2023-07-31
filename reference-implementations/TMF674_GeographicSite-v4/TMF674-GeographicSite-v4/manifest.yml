@@ -1,6 +1,0 @@
-applications:
-- name: geographic-site
-  host: 
-  memory: 640M
-  services:
-    - tmf-compose-for-mongodb
