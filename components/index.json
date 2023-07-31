@@ -1,0 +1,619 @@
+[
+    {
+        "name": "TMFC023-PartyInteractionManagement",
+        "version": "1.1.0",
+        "id": "TMFC023",
+        "mandatoryApis": [
+            {
+                "id": "TMF683",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC035-partyroles&permissionsmanagement",
+        "version": "1.1.0",
+        "id": "TMFC035",
+        "mandatoryApis": [
+            {
+                "id": "TMF672",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF669",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC024-billingaccountmanagement",
+        "version": "1.1.0",
+        "id": "TMFC024",
+        "mandatoryApis": [
+            {
+                "id": "TMF666",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC024-billingaccountmanagement",
+        "version": "1.1.0",
+        "id": "TMFC024",
+        "mandatoryApis": [
+            {
+                "id": "TMF666",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC020-agreementManagement",
+        "version": "1.1.0",
+        "id": "TMFC020",
+        "mandatoryApis": [
+            {
+                "id": "TMF651",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC010-resourcecatalogmanagement",
+        "version": "1.2.0",
+        "id": "TMFC010",
+        "mandatoryApis": [
+            {
+                "id": "TMF634",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC010-resourcecatalogmanagement",
+        "version": "1.2.0",
+        "id": "TMFC010",
+        "mandatoryApis": [
+            {
+                "id": "TMF634",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC001-productcatalogmanagement",
+        "version": "1.1.0",
+        "id": "TMFC001",
+        "mandatoryApis": [
+            {
+                "id": "TMF620",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF671",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMC011-serviceorderingmanagement",
+        "version": "1.0.0",
+        "id": "TMC011-",
+        "mandatoryApis": [
+            {
+                "id": "TMF641",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMC011-serviceorderingmanagement",
+        "version": "1.0.0",
+        "id": "TMC011-",
+        "mandatoryApis": [
+            {
+                "id": "TMF641",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC014-locationmanagement",
+        "version": "1.0.0",
+        "id": "TMFC014",
+        "mandatoryApis": [
+            {
+                "id": "TMF673",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF674",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF675",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC014-locationmanagement",
+        "version": "1.0.0",
+        "id": "TMFC014",
+        "mandatoryApis": [
+            {
+                "id": "TMF673",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF674",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF675",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC038-resourceperformancemanagement",
+        "version": "0.0.1",
+        "id": "TMFC038",
+        "mandatoryApis": [
+            {
+                "id": "TMFXXX",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF642",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": [
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ]
+    },
+    {
+        "name": "TMFC020-agreementManagement",
+        "version": "1.1.0",
+        "id": "TMFC020",
+        "mandatoryApis": [
+            {
+                "id": "TMF651",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC005-productinventory",
+        "version": "1.1.0",
+        "id": "TMFC005",
+        "mandatoryApis": [
+            {
+                "id": "TMF637",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC036 - Lead and Opportunity Management",
+        "version": "1.1.0",
+        "id": "TMFC036",
+        "mandatoryApis": [
+            {
+                "id": "TMF699",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC028-partymanagement",
+        "version": "1.1.0",
+        "id": "TMFC028",
+        "mandatoryApis": [
+            {
+                "id": "TMF668",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF632",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF629",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC028-partymanagement",
+        "version": "1.1.0",
+        "id": "TMFC028",
+        "mandatoryApis": [
+            {
+                "id": "TMF668",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF632",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF629",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC029-paymentmanagement",
+        "version": "1.1.0",
+        "id": "TMFC029",
+        "mandatoryApis": [
+            {
+                "id": "TMF670",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF676",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC029-paymentmanagement",
+        "version": "1.1.0",
+        "id": "TMFC029",
+        "mandatoryApis": [
+            {
+                "id": "TMF670",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF676",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC008-serviceInventory",
+        "version": "1.1.0",
+        "id": "TMFC008",
+        "mandatoryApis": [
+            {
+                "id": "TMF638",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC008-serviceInventory",
+        "version": "1.1.0",
+        "id": "TMFC008",
+        "mandatoryApis": [
+            {
+                "id": "TMF638",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC027-productconfigurator",
+        "version": "1.1.0",
+        "id": "TMFC027",
+        "mandatoryApis": [
+            {
+                "id": "TMF679",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC027-productconfigurator",
+        "version": "1.1.0",
+        "id": "TMFC027",
+        "mandatoryApis": [
+            {
+                "id": "TMF679",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC002-ProductOrderCaptureAndValidation",
+        "version": "1.1.0",
+        "id": "TMFC002",
+        "mandatoryApis": [
+            {
+                "id": "TMF622",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF648",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF663",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC020-digitalidentitymanagement",
+        "version": "1.1.0",
+        "id": "TMFC020",
+        "mandatoryApis": [
+            {
+                "id": "TMF720",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC020-digitalidentitymanagement",
+        "version": "1.1.0",
+        "id": "TMFC020",
+        "mandatoryApis": [
+            {
+                "id": "TMF720",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF701",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    },
+    {
+        "name": "TMFC035-partyroles&permissionsmanagement",
+        "version": "1.1.0",
+        "id": "TMFC035",
+        "mandatoryApis": [
+            {
+                "id": "TMF672",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF669",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            },
+            {
+                "id": "TMF688",
+                "url": "https://tmf-open-api-table-documents.s3.eu-west-1.amazonaws.com"
+            }
+        ],
+        "optionalApis": []
+    }
+]
