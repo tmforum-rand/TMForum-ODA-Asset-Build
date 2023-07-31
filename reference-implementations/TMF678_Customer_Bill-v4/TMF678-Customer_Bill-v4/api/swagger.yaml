@@ -1,0 +1,1540 @@
+basePath: /tmf-api/customerBillManagement/v4/
+consumes: [application/json;charset=utf-8]
+definitions:
+  Any: {}
+  AppliedBillingTaxRate:
+    description: The applied billing tax rate represents taxes applied billing rate
+      it refers to. It is calculated during the billing process.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      taxAmount: {unit: unit, value: 0.8008282}
+      taxCategory: taxCategory
+      taxRate: 0.8008282
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      taxAmount: {$ref: '#/definitions/Money', description: Tax amount expressed in
+          the given currency}
+      taxCategory: {description: A categorization of the tax rate, type: string}
+      taxRate: {description: Applied rate, format: float, type: number}
+    type: object
+  AppliedCustomerBillingRate:
+    description: A customer bill displays applied billing rates created before or
+      during the billing process.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      appliedBillingRateType: appliedBillingRateType
+      appliedTax:
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        taxAmount: {unit: unit, value: 0.8008282}
+        taxCategory: taxCategory
+        taxRate: 0.8008282
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        taxAmount: {unit: unit, value: 0.8008282}
+        taxCategory: taxCategory
+        taxRate: 0.8008282
+      bill: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name}
+      billingAccount: {'@baseType': '@baseType', '@referredType': '@referredType',
+        '@schemaLocation': 'http://example.com/aeiou', '@type': '@type', href: href,
+        id: id, name: name}
+      characteristic:
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        characteristicRelationship:
+        - {'@baseType': '@baseType', '@schemaLocation': 'http://example.com/aeiou',
+          '@type': '@type', id: id, relationshipType: relationshipType}
+        - {'@baseType': '@baseType', '@schemaLocation': 'http://example.com/aeiou',
+          '@type': '@type', id: id, relationshipType: relationshipType}
+        id: id
+        name: name
+        value: {}
+        valueType: valueType
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        characteristicRelationship:
+        - {'@baseType': '@baseType', '@schemaLocation': 'http://example.com/aeiou',
+          '@type': '@type', id: id, relationshipType: relationshipType}
+        - {'@baseType': '@baseType', '@schemaLocation': 'http://example.com/aeiou',
+          '@type': '@type', id: id, relationshipType: relationshipType}
+        id: id
+        name: name
+        value: {}
+        valueType: valueType
+      date: '2000-01-23T04:56:07.000+00:00'
+      description: description
+      href: href
+      id: id
+      isBilled: true
+      name: name
+      periodCoverage: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+      product: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name}
+      taxExcludedAmount: {unit: unit, value: 0.8008282}
+      taxIncludedAmount: {unit: unit, value: 0.8008282}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      appliedBillingRateType: {description: 'Type of the applied billing rate : appliedBillingCharge
+          (any kind of charge except taxation charges : recurringCharge, oneTimeCharge,
+          usageCharge),  appliedBillingCredit (any kind of credit : rebate or productAlteration)
+          or appliedPenaltyCharge (penalty charges such as late fees, payment rejection
+          fees,...)', type: string}
+      appliedTax:
+        items: {$ref: '#/definitions/AppliedBillingTaxRate'}
+        type: array
+      bill: {$ref: '#/definitions/CustomerBillRef'}
+      billingAccount: {$ref: '#/definitions/BillingAccountRef'}
+      characteristic:
+        items: {$ref: '#/definitions/Characteristic'}
+        type: array
+      date: {description: Creation date of the applied billing rate, format: date-time,
+        type: string}
+      description: {description: Additional data to be displayed on the bill for this
+          customer applied billing rate, type: string}
+      href: {description: 'Explanation: Reference of the customer applied billing
+          rate.', type: string}
+      id: {description: Unique identifier of the customer applied billing rate, type: string}
+      isBilled: {description: 'If isBilled = true then bill should be provided, if
+          false then billingAccount should be provided', type: boolean}
+      name: {description: Name of the customer applied billing rate, type: string}
+      periodCoverage: {$ref: '#/definitions/TimePeriod', description: 'periodCoverage
+          for RecurringCharge (RC) indicating the RC coverage period dates for different
+          purposes, such as RC proration, display on bill, GL reporting, etc. periodCoverage
+          for OC start and end date will be the same'}
+      product: {$ref: '#/definitions/ProductRef', description: 'Usually this information
+          should be provided by the PRODUCT, which implies that there is a valid reference
+          to product. In this case, this property should be empty. For all other situations,
+          a text or structured info could be provided using this property. Regular
+          modelling would suggest tu use the reforvalue pattern for this case. It
+          is not choosen here because it would generate declarational dependencies
+          which would be hard to maintain.'}
+      taxExcludedAmount: {$ref: '#/definitions/Money'}
+      taxIncludedAmount: {$ref: '#/definitions/Money'}
+    required: [id]
+    type: object
+  AppliedPayment:
+    description: The applied payment is the result of lettering process. It enables
+      to assign automatically or manually part of incoming payment amount to a bill.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      appliedAmount: {unit: unit, value: 0.8008282}
+      payment: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      appliedAmount: {$ref: '#/definitions/Money'}
+      payment: {$ref: '#/definitions/PaymentRef'}
+    type: object
+  Attachment:
+    description: Complements the description of an element (for instance a product)
+      through video, pictures...
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      attachmentType: {description: 'Attachment type such as video, picture', type: string}
+      content: {description: 'The actual contents of the attachment object, if embedded,
+          encoded as base64', type: string}
+      description: {description: A narrative text describing the content of the attachment,
+        type: string}
+      href: {description: URI for this Attachment, type: string}
+      id: {description: Unique identifier for this particular attachment, type: string}
+      mimeType: {description: 'Attachment mime type such as extension file for video,
+          picture and document', type: string}
+      name: {description: The name of the attachment, type: string}
+      size: {$ref: '#/definitions/Quantity', description: The size of the attachment.}
+      url: {description: 'Uniform Resource Locator, is a web page address (a subset
+          of URI)', type: string}
+      validFor: {$ref: '#/definitions/TimePeriod', description: The period of time
+          for which the attachment is valid}
+    type: object
+  AttachmentRef:
+    description: Attachment reference. An attachment complements the description of
+      an element (for instance a product) through video, pictures
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      description: {description: A narrative text describing the content of the attachment,
+        type: string}
+      href: {description: URL serving as reference for the attachment resource, type: string}
+      id: {description: Unique-Identifier for this attachment, type: string}
+      name: {description: Name of the related entity., type: string}
+      url: {description: Link to the attachment media/content, type: string}
+    required: [id]
+    type: object
+  AttachmentRefOrValue:
+    description: An attachment by value or by reference. For AttachmentRefOrValue,
+      the attribute type,schemaLocation and referredType are related to the contained
+      entity and not to AttchmentRefOrValue itself
+    example:
+      '@baseType': '@baseType'
+      '@referredType': '@referredType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      attachmentType: attachmentType
+      content: content
+      description: description
+      href: href
+      id: id
+      mimeType: mimeType
+      name: name
+      size: {amount: 6.0274563, units: units}
+      url: url
+      validFor: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      attachmentType: {description: 'Attachment type such as video, picture', type: string}
+      content: {description: 'The actual contents of the attachment object, if embedded,
+          encoded as base64', type: string}
+      description: {description: A narrative text describing the content of the attachment,
+        type: string}
+      href: {description: URI for this Attachment, type: string}
+      id: {description: Unique identifier for this particular attachment, type: string}
+      mimeType: {description: 'Attachment mime type such as extension file for video,
+          picture and document', type: string}
+      name: {description: The name of the attachment, type: string}
+      size: {$ref: '#/definitions/Quantity', description: The size of the attachment.}
+      url: {description: 'Uniform Resource Locator, is a web page address (a subset
+          of URI)', type: string}
+      validFor: {$ref: '#/definitions/TimePeriod', description: The period of time
+          for which the attachment is valid}
+    type: object
+  BillCycle:
+    description: A detailed description of a billing cycle and the various sub steps
+      of a billing cycle.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      BillCycleSpecification: {'@baseType': '@baseType', '@referredType': '@referredType',
+        '@schemaLocation': 'http://example.com/aeiou', '@type': '@type', href: href,
+        id: id, name: name}
+      billingDate: '2000-01-23T04:56:07.000+00:00'
+      billingPeriod: billingPeriod
+      chargeDate: '2000-01-23T04:56:07.000+00:00'
+      creditDate: '2000-01-23T04:56:07.000+00:00'
+      description: description
+      href: href
+      id: id
+      mailingDate: '2000-01-23T04:56:07.000+00:00'
+      name: name
+      paymentDueDate: '2000-01-23T04:56:07.000+00:00'
+      validFor: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      BillCycleSpecification: {$ref: '#/definitions/BillCycleSpecificationRef'}
+      billingDate: {description: The billing/settlement date., format: date-time,
+        type: string}
+      billingPeriod: {description: 'A billing time period. It is e.g. the concrete
+          expressed month. Example: ''March''.', type: string}
+      chargeDate: {description: 'Date through when a payment method (e.g. credit card,...)
+          will be activated.', format: date-time, type: string}
+      creditDate: {description: Date through which credits previously received by
+          the billing system are displeyed on the bill., format: date-time, type: string}
+      description: {description: An explanation regarding this billing cycle. If necessary.,
+        type: string}
+      href: {description: Reference of the billing cycle, type: string}
+      id: {description: Unique identifier of the billing cycle., type: string}
+      mailingDate: {description: Customer bill mailing date., format: date-time, type: string}
+      name: {description: A short descriptive name of the actual billing cycle, type: string}
+      paymentDueDate: {description: 'Date, when the payment is due.', format: date-time,
+        type: string}
+      validFor: {$ref: '#/definitions/TimePeriod', description: The period for which
+          the billing cycle is valid (expressed in a formal formatted way)}
+    type: object
+  BillCycleRef:
+    description: '....'
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Unique reference of the account, type: string}
+      id: {description: Unique identifier of the account, type: string}
+      name: {description: Name of the account, type: string}
+    required: [id]
+    type: object
+  BillCycleSpecification:
+    description: A detailed description of a billing cycle and the various sub steps
+      of a billing cycle.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      billingDateShift: 0
+      billingPeriod: billingPeriod
+      chargeDateOffset: 6
+      creditDateOffset: 1
+      description: description
+      frequency: frequency
+      href: href
+      id: id
+      mailingDateOffset: 5
+      name: name
+      paymentDueDateOffset: 5
+      validFor: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      billingDateShift: {description: An offset of a billing/settlement date. The
+          offset is expressed as number of days with regard to the start of the billing/settlement
+          period., type: integer}
+      billingPeriod: {description: 'A billing time period. It can be recurring, for
+          example: week, month, quarter of year, year .', type: string}
+      chargeDateOffset: {description: An offset of a date through which charges previously
+          received by the billing system will appear on the bill. The offset is expressed
+          as number of days with regard to the start of the BillingPeriod., type: integer}
+      creditDateOffset: {description: An offset of a date through which credits previously
+          received by the billing system will appear on the bill. The offset is expressed
+          as number of days with regard to the start of the BillingPeriod., type: integer}
+      description: {description: An explanation regarding this billing cycle. If necessary.,
+        type: string}
+      frequency: {description: Frequency of the billing cycle (monthly for instance),
+        type: string}
+      href: {description: Reference of the billing cycle, type: string}
+      id: {description: Unique identifier of the billing cycle., type: string}
+      mailingDateOffset: {description: An offset of a customer bill mailing date.
+          The offset is expressed as number of days with regard to the start of the
+          BillingPeriod., type: integer}
+      name: {description: A short descriptive name of the actual billing cycle, type: string}
+      paymentDueDateOffset: {description: An offset of a payment due date. The offset
+          is expressed as number of days with regard to the start of the BillingPeriod.,
+        type: integer}
+      validFor: {$ref: '#/definitions/TimePeriod', description: 'The period for which
+          the billing cycle is valid, expressed in a formatted structured way.'}
+    type: object
+  BillCycleSpecificationRef:
+    description: '....'
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Unique reference of the BillCycleSpecification, type: string}
+      id: {description: Unique identifier of the BillCycleSpecification, type: string}
+      name: {description: Name of the BillCycleSpecification, type: string}
+    required: [id]
+    type: object
+  BillingAccountRef:
+    description: BillingAccount reference. A BillingAccount is a detailed description
+      of a bill structure.
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the billing account, type: string}
+      id: {description: Unique identifier of the billing account, type: string}
+      name: {description: Name of the billing account, type: string}
+    required: [id]
+    type: object
+  Characteristic:
+    description: Describes a given characteristic of an object or entity through a
+      name/value pair.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      characteristicRelationship:
+      - {'@baseType': '@baseType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', id: id, relationshipType: relationshipType}
+      - {'@baseType': '@baseType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', id: id, relationshipType: relationshipType}
+      id: id
+      name: name
+      value: {}
+      valueType: valueType
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      characteristicRelationship:
+        items: {$ref: '#/definitions/CharacteristicRelationship'}
+        type: array
+      id: {description: Unique identifier of the characteristic, type: string}
+      name: {description: Name of the characteristic, type: string}
+      value: {$ref: '#/definitions/Any', description: The value of the characteristic}
+      valueType: {description: Data type of the value of the characteristic, type: string}
+    required: [name, value]
+    type: object
+  CharacteristicRelationship:
+    description: Another Characteristic that is related to the current Characteristic;
+    example: {'@baseType': '@baseType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', id: id, relationshipType: relationshipType}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      id: {description: Unique identifier of the characteristic, type: string}
+      relationshipType: {description: The type of relationship, type: string}
+    type: object
+  CustomerBill:
+    description: The customer bill. Can be a regular recurring bill or an extra bill
+      on demand by the customer or the csp.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      amountDue: {unit: unit, value: 0.8008282}
+      appliedPayment:
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        appliedAmount: {unit: unit, value: 0.8008282}
+        payment: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+          '@type': '@type', href: href, id: id, name: name}
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        appliedAmount: {unit: unit, value: 0.8008282}
+        payment: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+          '@type': '@type', href: href, id: id, name: name}
+      billCycle: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name}
+      billDate: '2000-01-23T04:56:07.000+00:00'
+      billDocument:
+      - '@baseType': '@baseType'
+        '@referredType': '@referredType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        attachmentType: attachmentType
+        content: content
+        description: description
+        href: href
+        id: id
+        mimeType: mimeType
+        name: name
+        size: {amount: 6.0274563, units: units}
+        url: url
+        validFor: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+      - '@baseType': '@baseType'
+        '@referredType': '@referredType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        attachmentType: attachmentType
+        content: content
+        description: description
+        href: href
+        id: id
+        mimeType: mimeType
+        name: name
+        size: {amount: 6.0274563, units: units}
+        url: url
+        validFor: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+      billNo: billNo
+      billingAccount: {'@baseType': '@baseType', '@referredType': '@referredType',
+        '@schemaLocation': 'http://example.com/aeiou', '@type': '@type', href: href,
+        id: id, name: name}
+      billingPeriod: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+      category: category
+      financialAccount: {'@baseType': '@baseType', '@referredType': '@referredType',
+        '@schemaLocation': 'http://example.com/aeiou', '@type': '@type', href: href,
+        id: id, name: name}
+      href: href
+      id: id
+      lastUpdate: '2000-01-23T04:56:07.000+00:00'
+      nextBillDate: '2000-01-23T04:56:07.000+00:00'
+      paymentDueDate: '2000-01-23T04:56:07.000+00:00'
+      paymentMethod: {'@baseType': '@baseType', '@referredType': '@referredType',
+        '@schemaLocation': 'http://example.com/aeiou', '@type': '@type', href: href,
+        id: id, name: name}
+      relatedParty:
+      - {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name, role: role}
+      - {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name, role: role}
+      remainingAmount: {unit: unit, value: 0.8008282}
+      runType: {}
+      state: {}
+      taxExcludedAmount: {unit: unit, value: 0.8008282}
+      taxIncludedAmount: {unit: unit, value: 0.8008282}
+      taxItem:
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        taxAmount: {unit: unit, value: 0.8008282}
+        taxCategory: taxCategory
+        taxRate: 1.4658129
+      - '@baseType': '@baseType'
+        '@schemaLocation': http://example.com/aeiou
+        '@type': '@type'
+        taxAmount: {unit: unit, value: 0.8008282}
+        taxCategory: taxCategory
+        taxRate: 1.4658129
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      amountDue: {$ref: '#/definitions/Money'}
+      appliedPayment:
+        description: Applied payment is a payment associated with the bill. There
+          may be a partial payment, then there should be several applied payments
+          available. On the other hand, more than one bill could be payed by one payment.
+          In general there is an n:m relation between payment and bill.
+        items: {$ref: '#/definitions/AppliedPayment'}
+        type: array
+      billCycle: {$ref: '#/definitions/BillCycleRef'}
+      billDate: {description: 'Bill date, external customer view (in consequence:
+          different to the production date of the bill)', format: date-time, type: string}
+      billDocument:
+        items: {$ref: '#/definitions/AttachmentRefOrValue'}
+        type: array
+      billNo: {description: Bill reference known by the customer or the party and
+          displayed on the bill. Could be different from the id, type: string}
+      billingAccount: {$ref: '#/definitions/BillingAccountRef'}
+      billingPeriod: {$ref: '#/definitions/TimePeriod'}
+      category: {description: 'Category of the bill produced : normal, duplicate,
+          interim, last, trial customer or credit note for example', type: string}
+      financialAccount: {$ref: '#/definitions/FinancialAccountRef'}
+      href: {description: Bill unique reference, type: string}
+      id: {description: 'Explanation: Unique identifier of he bill', type: string}
+      lastUpdate: {description: Date of bill last update, format: date-time, type: string}
+      nextBillDate: {description: ). Approximate date of  the next bill production
+          given for information (only used/meaningful for on cycle / regular bills),
+        format: date-time, type: string}
+      paymentDueDate: {description: Date at which the amount due should have been
+          paid, format: date-time, type: string}
+      paymentMethod: {$ref: '#/definitions/PaymentMethodRef', description: 'paymentMethod
+          here is recognized to be not really necessary in a STANDARD. It could be
+          obtained by a GET request on the billing account. Conclusion: paymentMethod
+          is marked to DEPRECIATED and will be removed in one of the next versions.'}
+      relatedParty:
+        items: {$ref: '#/definitions/RelatedParty'}
+        type: array
+      remainingAmount: {$ref: '#/definitions/Money'}
+      runType: {$ref: '#/definitions/CustomerBillRunType', description: onCycle (a
+          bill can be created as a result of a cycle run) or offCycle (a bill can
+          be created as a result of other events such as customer request or account
+          close)}
+      state: {$ref: '#/definitions/CustomerBillStateType', description: Status of
+          the bill}
+      taxExcludedAmount: {$ref: '#/definitions/Money'}
+      taxIncludedAmount: {$ref: '#/definitions/Money'}
+      taxItem:
+        items: {$ref: '#/definitions/TaxItem'}
+        type: array
+    type: object
+  CustomerBillOnDemand:
+    description: This resource is used to manage the creation request of a customer
+      bill in real-time (on demand).
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      billingAccount: {'@baseType': '@baseType', '@referredType': '@referredType',
+        '@schemaLocation': 'http://example.com/aeiou', '@type': '@type', href: href,
+        id: id, name: name}
+      customerBill: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name}
+      description: description
+      href: href
+      id: id
+      lastUpdate: lastUpdate
+      name: name
+      relatedParty: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name, role: role}
+      state: {}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      billingAccount: {$ref: '#/definitions/BillingAccountRef'}
+      customerBill: {$ref: '#/definitions/CustomerBillRef'}
+      description: {description: Additional data describing the customer bill on demand
+          request, type: string}
+      href: {description: Reference of the customer bill on demand request, type: string}
+      id: {description: 'Explanation: Unique identifier of the customer bill on demand
+          request given by the server', type: string}
+      lastUpdate: {description: The last date time when the customer bill on demand
+          has been updated, type: string}
+      name: {description: Friendly name to identify the customer bill on demand request,
+        type: string}
+      relatedParty: {$ref: '#/definitions/RelatedParty'}
+      state: {$ref: '#/definitions/CustomerBillOnDemandStateType', description: 'State
+          of the request to produce an off cycle bill: Possible values are: inProgress,
+          rejected, done, terminatedWithError.'}
+    type: object
+  CustomerBillOnDemandStateType:
+    description: 'Recommended Enumeration Type (not formal forced in standard): Valid
+      values for ''CustomerBillOnDemand'': ''inProgress'', ''rejected'', ''done'',
+      ''terminatedWithError'''
+    enum: [inProgress, rejected, done, terminatedWithError]
+    type: string
+  CustomerBillOnDemand_Create:
+    description: 'This resource is used to manage the creation request of a customer
+      bill in real-time (on demand).
+
+      Skipped properties: id,href'
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      billingAccount: {'@baseType': '@baseType', '@referredType': '@referredType',
+        '@schemaLocation': 'http://example.com/aeiou', '@type': '@type', href: href,
+        id: id, name: name}
+      customerBill: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name}
+      description: description
+      lastUpdate: lastUpdate
+      name: name
+      relatedParty: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name, role: role}
+      state: {}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      billingAccount: {$ref: '#/definitions/BillingAccountRef'}
+      customerBill: {$ref: '#/definitions/CustomerBillRef'}
+      description: {description: Additional data describing the customer bill on demand
+          request, type: string}
+      lastUpdate: {description: The last date time when the customer bill on demand
+          has been updated, type: string}
+      name: {description: Friendly name to identify the customer bill on demand request,
+        type: string}
+      relatedParty: {$ref: '#/definitions/RelatedParty'}
+      state: {$ref: '#/definitions/CustomerBillOnDemandStateType', description: 'State
+          of the request to produce an off cycle bill: Possible values are: inProgress,
+          rejected, done, terminatedWithError.'}
+    type: object
+  CustomerBillRef:
+    description: Bill reference.
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the related entity., type: string}
+      id: {description: Unique identifier of a related entity., type: string}
+      name: {description: Name of the related entity., type: string}
+    required: [id]
+    type: object
+  CustomerBillRunType:
+    description: 'Recommended Enumeration Type (not formal forced in standard): Valid
+      values for the runType of a bill. The bill could be produced in a regular bill
+      cycle ''onCycle''. Otherwise the bill is produced on a request (e.g. customer
+      request). This could be indicated by ''offCycle'''
+    enum: [onCycle, offCycle]
+    type: string
+  CustomerBillStateType:
+    description: 'Recommended Enumeration Type (not formal forced in standard): Valid
+      values for the lifecycle state of the bill: new = ''bill is ready to validate
+      or to sent'', validated = ''bill is checked (manual / automatic)'', sent = ''bill
+      is sent with the channel defined in the billingaccount'', settled = ''bill is
+      payed'', partiallySettled = ''bill is partially payed'', onHold = ''bill will
+      not be in further processing until open issues connected to the bill are solved'''
+    enum: [new, onHold, validated, sent, settled, partiallyPaid]
+    type: string
+  CustomerBill_Update:
+    description: 'The customer bill. Can be a regular recurring bill or an extra bill
+      on demand by the customer or the csp.
+
+      Skipped properties: id,href,amountDue,appliedPayment,billDate,billDocument,billNo,billingAccount,billingPeriod,category,financialAccount,lastUpdate,nextBillDate,paymentDueDate,paymentMethod,relatedParty,remainingAmount,runType,taxExcludedAmount,taxIncludedAmount,taxItem'
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      billCycle: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+        '@type': '@type', href: href, id: id, name: name}
+      state: {}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      billCycle: {$ref: '#/definitions/BillCycleRef'}
+      state: {$ref: '#/definitions/CustomerBillStateType', description: Status of
+          the bill}
+    type: object
+  EntityRef:
+    description: Entity reference schema to be use for all entityRef class.
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the related entity., type: string}
+      id: {description: Unique identifier of a related entity., type: string}
+      name: {description: Name of the related entity., type: string}
+    required: [id]
+    type: object
+  Error:
+    description: Used when an API throws an Error, typically with a HTTP error response-code
+      (3xx, 4xx, 5xx)
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class.',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name.', type: string}
+      code: {description: 'Application relevant detail, defined in the API or a common
+          list.', type: string}
+      message: {description: More details and corrective actions related to the error
+          which can be shown to a client user., type: string}
+      reason: {description: Explanation of the reason for the error which can be shown
+          to a client user., type: string}
+      referenceError: {description: URI of documentation describing the error., format: uri,
+        type: string}
+      status: {description: HTTP Error code extension, type: string}
+    required: [code, reason]
+    type: object
+  EventSubscription:
+    description: Sets the communication endpoint address the service instance must
+      use to deliver notification information
+    example: {callback: callback, id: id, query: query}
+    properties:
+      callback: {description: The callback being registered., type: string}
+      id: {description: Id of the listener, type: string}
+      query: {description: additional data to be passed, type: string}
+    required: [callback, id]
+    type: object
+  EventSubscriptionInput:
+    description: Sets the communication endpoint address the service instance must
+      use to deliver notification information
+    example: {callback: callback, query: query}
+    properties:
+      callback: {description: The callback being registered., type: string}
+      query: {description: additional data to be passed, type: string}
+    required: [callback]
+    type: object
+  FinancialAccountRef:
+    description: AccountReceivable reference. An account of money owed by a party
+      to another entity in exchange for goods or services that have been delivered
+      or used. An account receivable aggregates the amounts of one or more party accounts
+      (billing or settlement) owned by a given party.
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the related entity., type: string}
+      id: {description: Unique identifier of a related entity., type: string}
+      name: {description: Name of the related entity., type: string}
+    required: [id]
+    type: object
+  Money:
+    description: A base / value business entity used to represent money
+    example: {unit: unit, value: 0.8008282}
+    properties:
+      unit: {description: Currency (ISO4217 norm uses 3 letters to define the currency),
+        type: string}
+      value: {description: A positive floating point number, format: float, type: number}
+    type: object
+  PaymentMethodRef:
+    description: PaymentMethod reference. A payment method defines a specific mean
+      of payment (e.g direct debit).
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the payment mean, type: string}
+      id: {description: Unique identifier of the payment mean, type: string}
+      name: {description: Name of the payment mean, type: string}
+    required: [id]
+    type: object
+  PaymentRef:
+    description: If an immediate payment has been done at the product order submission,
+      the payment information are captured and stored (as a reference) in the order.
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the related entity., type: string}
+      id: {description: Unique identifier of a related entity., type: string}
+      name: {description: A name for the payment, type: string}
+    required: [id]
+    type: object
+  ProductRef:
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the related entity., type: string}
+      id: {description: Unique identifier of a related entity., type: string}
+      name: {description: Name of the related entity., type: string}
+    required: [id]
+    type: object
+  Quantity:
+    description: An amount in a given unit
+    example: {amount: 6.0274563, units: units}
+    properties:
+      amount: {default: 1.0, description: Numeric value in a given unit, format: float,
+        type: number}
+      units: {description: Unit, type: string}
+    type: object
+  RelatedParty:
+    description: Related Entity reference. A related party defines party or party
+      role linked to a specific entity.
+    example: {'@baseType': '@baseType', '@referredType': '@referredType', '@schemaLocation': 'http://example.com/aeiou',
+      '@type': '@type', href: href, id: id, name: name, role: role}
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@referredType': {description: The actual type of the target instance when needed
+          for disambiguation., type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      href: {description: Reference of the related entity., type: string}
+      id: {description: Unique identifier of a related entity., type: string}
+      name: {description: Name of the related entity., type: string}
+      role: {description: Role played by the related party, type: string}
+    required: ['@referredType', id]
+    type: object
+  TaxItem:
+    description: A tax item is created for each tax rate and tax type used in the
+      bill.
+    example:
+      '@baseType': '@baseType'
+      '@schemaLocation': http://example.com/aeiou
+      '@type': '@type'
+      taxAmount: {unit: unit, value: 0.8008282}
+      taxCategory: taxCategory
+      taxRate: 1.4658129
+    properties:
+      '@baseType': {description: 'When sub-classing, this defines the super-class',
+        type: string}
+      '@schemaLocation': {description: A URI to a JSON-Schema file that defines additional
+          attributes and relationships, format: uri, type: string}
+      '@type': {description: 'When sub-classing, this defines the sub-class entity
+          name', type: string}
+      taxAmount: {$ref: '#/definitions/Money', description: Amount of tax expressed
+          in the given currency}
+      taxCategory: {description: Tax category, type: string}
+      taxRate: {description: Applied rate of the tax, format: float, type: number}
+    type: object
+  TimePeriod:
+    description: A period of time, either as a deadline (endDateTime only) a startDateTime
+      only, or both
+    example: {endDateTime: '2000-01-23T04:56:07.000+00:00', startDateTime: '2000-01-23T04:56:07.000+00:00'}
+    properties:
+      endDateTime: {description: 'End of the time period, using IETC-RFC-3339 format',
+        format: date-time, type: string}
+      startDateTime: {description: 'Start of the time period, using IETC-RFC-3339
+          format. If you define a start, you must also define an end', format: date-time,
+        type: string}
+    type: object
+host: localhost:8080
+info: {description: "## TMF API Reference: TMF 678 - Customer bill Management\n\n\
+    ### Release: 19.5 - December 2019\n\nThe Customer Bill Management API allows to\
+    \ find and retrieve one or several customer bills (also called invoices) produced\
+    \ for a customer. A customer bill is an electronic or paper document produced\
+    \ at the end of the billing process. The customer bill gathers and displays different\
+    \ items (applied customer billing rates generated during the rating and billing\
+    \ processes) to be charged to a customer. It represents a total amount due for\
+    \ all the products during the billing period and all significant information like\
+    \ dates, bill reference...\nThis API provides also operations to find and retrieve\
+    \ the details of applied customer billing rates presented on a customer bill.\
+    \ \nFinally, this API allows to request in real-time a customer bill creation\
+    \ and to manage this request.\n\n### Resources \n- customerBill\n- appliedCustomerBillingRate\n\
+    - customerBillOnDemand\n- billingCycle\n\n### Operations\nCustomer Bill Management\
+    \ API performs the following operations :\n- Retrieve a customer bill or a collection\
+    \ of customer bills depending on filter criteria.\n- Partial update of  a customer\
+    \ bill (for administration purposes).\n-  Retrieve an applied customer billing\
+    \ rate or a collection of applied customer billing rates depending on filter criteria.\n\
+    -  Create a customer bill on demand request, retrieve one or a collection of \
+    \ customer bill on demand request(s) depending on filter criteria.\n\n- Manage\
+    \ notification of events on customer bill and customer bill on demand.\n\nCopyright\
+    \ \xA9 TM Forum 2018. All Rights Reserved.", title: API CustomerBill, version: '4.0'}
+paths:
+  /appliedCustomerBillingRate:
+    get:
+      description: This operation list or find AppliedCustomerBillingRate entities
+      operationId: listAppliedCustomerBillingRate
+      parameters:
+      - {description: Comma-separated properties to be provided in response, in: query,
+        name: fields, required: false, type: string}
+      - {description: Requested index for start of resources to be provided in response,
+        in: query, name: offset, required: false, type: integer}
+      - {description: Requested number of resources to be provided in response, in: query,
+        name: limit, required: false, type: integer}
+      responses:
+        200:
+          description: Success
+          headers:
+            X-Result-Count: {description: Actual number of items returned in the response
+                body, type: integer}
+            X-Total-Count: {description: Total number of items matching criteria,
+              type: integer}
+          schema:
+            items: {$ref: '#/definitions/AppliedCustomerBillingRate'}
+            type: array
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: List or find AppliedCustomerBillingRate objects
+      tags: [appliedCustomerBillingRate]
+      x-swagger-router-controller: AppliedCustomerBillingRate
+  /appliedCustomerBillingRate/{id}:
+    get:
+      description: This operation retrieves a AppliedCustomerBillingRate entity. Attribute
+        selection is enabled for all first level attributes.
+      operationId: retrieveAppliedCustomerBillingRate
+      parameters:
+      - {description: Identifier of the AppliedCustomerBillingRate, in: path, name: id,
+        required: true, type: string}
+      - {description: Comma-separated properties to provide in response, in: query,
+        name: fields, required: false, type: string}
+      responses:
+        200:
+          description: Success
+          schema: {$ref: '#/definitions/AppliedCustomerBillingRate'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Retrieves a AppliedCustomerBillingRate by ID
+      tags: [appliedCustomerBillingRate]
+      x-swagger-router-controller: AppliedCustomerBillingRate
+  /billCycle:
+    get:
+      description: This operation list or find BillCycle entities
+      operationId: listBillCycle
+      parameters:
+      - {description: Comma-separated properties to be provided in response, in: query,
+        name: fields, required: false, type: string}
+      - {description: Requested index for start of resources to be provided in response,
+        in: query, name: offset, required: false, type: integer}
+      - {description: Requested number of resources to be provided in response, in: query,
+        name: limit, required: false, type: integer}
+      responses:
+        200:
+          description: Success
+          headers:
+            X-Result-Count: {description: Actual number of items returned in the response
+                body, type: integer}
+            X-Total-Count: {description: Total number of items matching criteria,
+              type: integer}
+          schema:
+            items: {$ref: '#/definitions/BillCycle'}
+            type: array
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: List or find BillCycle objects
+      tags: [billCycle]
+      x-swagger-router-controller: BillCycle
+  /billCycle/{id}:
+    get:
+      description: This operation retrieves a BillCycle entity. Attribute selection
+        is enabled for all first level attributes.
+      operationId: retrieveBillCycle
+      parameters:
+      - {description: Identifier of the BillCycle, in: path, name: id, required: true,
+        type: string}
+      - {description: Comma-separated properties to provide in response, in: query,
+        name: fields, required: false, type: string}
+      responses:
+        200:
+          description: Success
+          schema: {$ref: '#/definitions/BillCycle'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Retrieves a BillCycle by ID
+      tags: [billCycle]
+      x-swagger-router-controller: BillCycle
+  /billCycleSpecification:
+    get:
+      description: This operation list or find BillCycleSpecification entities
+      operationId: listBillCycleSpecification
+      parameters:
+      - {description: Comma-separated properties to be provided in response, in: query,
+        name: fields, required: false, type: string}
+      - {description: Requested index for start of resources to be provided in response,
+        in: query, name: offset, required: false, type: integer}
+      - {description: Requested number of resources to be provided in response, in: query,
+        name: limit, required: false, type: integer}
+      responses:
+        200:
+          description: Success
+          headers:
+            X-Result-Count: {description: Actual number of items returned in the response
+                body, type: integer}
+            X-Total-Count: {description: Total number of items matching criteria,
+              type: integer}
+          schema:
+            items: {$ref: '#/definitions/BillCycleSpecification'}
+            type: array
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: List or find BillCycleSpecification objects
+      tags: [billCycleSpecification]
+      x-swagger-router-controller: BillCycleSpecification
+  /billCycleSpecification/{id}:
+    get:
+      description: This operation retrieves a BillCycleSpecification entity. Attribute
+        selection is enabled for all first level attributes.
+      operationId: retrieveBillCycleSpecification
+      parameters:
+      - {description: Identifier of the BillCycleSpecification, in: path, name: id,
+        required: true, type: string}
+      - {description: Comma-separated properties to provide in response, in: query,
+        name: fields, required: false, type: string}
+      responses:
+        200:
+          description: Success
+          schema: {$ref: '#/definitions/BillCycleSpecification'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Retrieves a BillCycleSpecification by ID
+      tags: [billCycleSpecification]
+      x-swagger-router-controller: BillCycleSpecification
+  /customerBill:
+    get:
+      description: This operation list or find CustomerBill entities
+      operationId: listCustomerBill
+      parameters:
+      - {description: Comma-separated properties to be provided in response, in: query,
+        name: fields, required: false, type: string}
+      - {description: Requested index for start of resources to be provided in response,
+        in: query, name: offset, required: false, type: integer}
+      - {description: Requested number of resources to be provided in response, in: query,
+        name: limit, required: false, type: integer}
+      responses:
+        200:
+          description: Success
+          headers:
+            X-Result-Count: {description: Actual number of items returned in the response
+                body, type: integer}
+            X-Total-Count: {description: Total number of items matching criteria,
+              type: integer}
+          schema:
+            items: {$ref: '#/definitions/CustomerBill'}
+            type: array
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: List or find CustomerBill objects
+      tags: [customerBill]
+      x-swagger-router-controller: CustomerBill
+  /customerBill/{id}:
+    get:
+      description: This operation retrieves a CustomerBill entity. Attribute selection
+        is enabled for all first level attributes.
+      operationId: retrieveCustomerBill
+      parameters:
+      - {description: Identifier of the CustomerBill, in: path, name: id, required: true,
+        type: string}
+      - {description: Comma-separated properties to provide in response, in: query,
+        name: fields, required: false, type: string}
+      responses:
+        200:
+          description: Success
+          schema: {$ref: '#/definitions/CustomerBill'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Retrieves a CustomerBill by ID
+      tags: [customerBill]
+      x-swagger-router-controller: CustomerBill
+    patch:
+      description: This operation updates partially a CustomerBill entity.
+      operationId: patchCustomerBill
+      parameters:
+      - {description: Identifier of the CustomerBill, in: path, name: id, required: true,
+        type: string}
+      - description: The CustomerBill to be updated
+        in: body
+        name: customerBill
+        required: true
+        schema: {$ref: '#/definitions/CustomerBill_Update'}
+      responses:
+        200:
+          description: Updated
+          schema: {$ref: '#/definitions/CustomerBill'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Updates partially a CustomerBill
+      tags: [customerBill]
+      x-swagger-router-controller: CustomerBill
+  /customerBillOnDemand:
+    get:
+      description: This operation list or find CustomerBillOnDemand entities
+      operationId: listCustomerBillOnDemand
+      parameters:
+      - {description: Comma-separated properties to be provided in response, in: query,
+        name: fields, required: false, type: string}
+      - {description: Requested index for start of resources to be provided in response,
+        in: query, name: offset, required: false, type: integer}
+      - {description: Requested number of resources to be provided in response, in: query,
+        name: limit, required: false, type: integer}
+      responses:
+        200:
+          description: Success
+          headers:
+            X-Result-Count: {description: Actual number of items returned in the response
+                body, type: integer}
+            X-Total-Count: {description: Total number of items matching criteria,
+              type: integer}
+          schema:
+            items: {$ref: '#/definitions/CustomerBillOnDemand'}
+            type: array
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: List or find CustomerBillOnDemand objects
+      tags: [customerBillOnDemand]
+      x-swagger-router-controller: CustomerBillOnDemand
+    post:
+      description: This operation creates a CustomerBillOnDemand entity.
+      operationId: createCustomerBillOnDemand
+      parameters:
+      - description: The CustomerBillOnDemand to be created
+        in: body
+        name: customerBillOnDemand
+        required: true
+        schema: {$ref: '#/definitions/CustomerBillOnDemand_Create'}
+      responses:
+        201:
+          description: Created
+          schema: {$ref: '#/definitions/CustomerBillOnDemand'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Creates a CustomerBillOnDemand
+      tags: [customerBillOnDemand]
+      x-swagger-router-controller: CustomerBillOnDemand
+  /customerBillOnDemand/{id}:
+    get:
+      description: This operation retrieves a CustomerBillOnDemand entity. Attribute
+        selection is enabled for all first level attributes.
+      operationId: retrieveCustomerBillOnDemand
+      parameters:
+      - {description: Identifier of the CustomerBillOnDemand, in: path, name: id,
+        required: true, type: string}
+      - {description: Comma-separated properties to provide in response, in: query,
+        name: fields, required: false, type: string}
+      responses:
+        200:
+          description: Success
+          schema: {$ref: '#/definitions/CustomerBillOnDemand'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Retrieves a CustomerBillOnDemand by ID
+      tags: [customerBillOnDemand]
+      x-swagger-router-controller: CustomerBillOnDemand
+  /hub:
+    post:
+      description: Sets the communication endpoint address the service instance must
+        use to deliver information about its health state, execution state, failures
+        and metrics.
+      operationId: registerListener
+      parameters:
+      - description: Data containing the callback endpoint to deliver the information
+        in: body
+        name: data
+        required: true
+        schema: {$ref: '#/definitions/EventSubscriptionInput'}
+      responses:
+        201:
+          description: Subscribed
+          schema: {$ref: '#/definitions/EventSubscription'}
+        400:
+          description: Bad Request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method Not allowed
+          schema: {$ref: '#/definitions/Error'}
+        409:
+          description: Conflict
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Register a listener
+      tags: [events subscription]
+      x-swagger-router-controller: EventsSubscription
+  /hub/{id}:
+    delete:
+      description: Resets the communication endpoint address the service instance
+        must use to deliver information about its health state, execution state, failures
+        and metrics.
+      operationId: unregisterListener
+      parameters:
+      - {description: The id of the registered listener, in: path, name: id, required: true,
+        type: string}
+      responses:
+        204: {description: Deleted}
+        400:
+          description: Bad request
+          schema: {$ref: '#/definitions/Error'}
+        401:
+          description: Unauthorized
+          schema: {$ref: '#/definitions/Error'}
+        403:
+          description: Forbidden
+          schema: {$ref: '#/definitions/Error'}
+        404:
+          description: Not Found
+          schema: {$ref: '#/definitions/Error'}
+        405:
+          description: Method not allowed
+          schema: {$ref: '#/definitions/Error'}
+        500:
+          description: Internal Server Error
+          schema: {$ref: '#/definitions/Error'}
+      summary: Unregister a listener
+      tags: [events subscription]
+      x-swagger-router-controller: EventsSubscription
+produces: [application/json;charset=utf-8]
+scheme: [http]
+schemes: [http]
+swagger: '2.0'
+tags:
+- {name: customerBillOnDemand}
+- {name: customerBill}
+- {name: appliedCustomerBillingRate}
+- {name: billCycle}
+- {name: billCycleSpecification}
+- {name: events subscription}

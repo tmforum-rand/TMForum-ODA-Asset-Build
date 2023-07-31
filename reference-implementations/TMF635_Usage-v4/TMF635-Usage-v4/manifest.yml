@@ -1,0 +1,5 @@
+applications:
+- host: null
+  memory: 256M
+  name: TMF635-Usage-v4
+  services: [tmf-compose-for-mongodb]

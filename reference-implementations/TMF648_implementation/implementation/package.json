@@ -1,0 +1,37 @@
+{
+  "name": "quote",
+  "version": "4.0.0",
+  "description": "**TMF API Reference : TMF 648 - Quote Management**  **Release : 19.0 - June 2019**  The Quote API provides a standardized mechanism for placing a quote with all of the necessary parameters. The API consists of a simple set of operations that interact with CRM/Quote/Pricing Negotiation systems in a consistent manner. A Quote is created based on product offering(s) that is(are) defined in a catalog. The quote identifies the product or set of products that are available to a customer for pricing request, and includes product characteristics.  The Quote references the product offer(s) which (future) customer request pricing. Quote resource features authorization subclass to manage special pricing UC requiring authorization tracking management  **Quote resource** A Quote can be used to request pricing between a customer and a service provider or between a service provider and a partner and vice versa. Main quote attributes are its identifier, state, priority, related dates (requested, expected, valid, completion, etc.), related parties and quote items. Main Quote Items attributes are the discribed offering and product characteristics with the related action to be performed (e.g. add, change or delete the products), location information, and product characteristics.  Quote API performs the following operations on Quote :  - Retrieval of a quote or a collection of quotes depending on filter criteria - Partial update of a quote (including updating rules) - Creation of a quote (including default values and creation rules) - Deletion of quote (for administration purposes) - Notification of events on quote.  Copyright © TM Forum 2019. All Rights Reserved  ",
+  "main": "index.js",
+  "scripts": {
+	"prestart": "npm install",
+	"start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect": "^3.2.0",
+    "express": "^4.15.3",
+    "js-yaml": "^3.3.0",
+    "uuid": "^3.3.2",
+    "query-to-mongo": "^0.9.0",
+    "swagger-tools": "0.10.1",
+    "cfenv": "^1.0.3",
+    "commander": "^2.6.0",
+    "http-post": "^0.1.1",
+    "http-proxy": "^1.8.1",
+    "mongodb": "^3.1.1",
+    "swagger-ui-dist": "^3.17.6",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "untildify": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=8.10",
+    "npm": ">=6.0"
+  }
+}
