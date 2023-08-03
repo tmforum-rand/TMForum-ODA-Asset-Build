@@ -3,7 +3,7 @@
     "info": {
         "title": "Product Catalog Management",
         "description": "## TMF API Reference: TMF620 - Product Catalog Management\n\n### Release : 20.5 - March 2021\n\nProduct Catalog API is one of Catalog Management API Family. Product Catalog API goal is to provide a catalog of products. \n\n### Operations\nProduct Catalog API performs the following operations on the resources :\n- Retrieve an entity or a collection of entities depending on filter criteria\n- Partial update of an entity (including updating rules)\n- Create an entity (including default values and creation rules)\n- Delete an entity\n- Manage notification of events",
-        "version": "4.1.0"
+        "version": "4.0.0"
     },
     "host": "serverRoot",
     "basePath": "/tmf-api/productCatalogManagement/v4/",
