@@ -3,6 +3,7 @@ import json
 import zipfile
 import shutil
 from pathlib import Path
+from tasks.helmChartGenerator import main as helm_chart_generator
 
 
 def load_v1beta1_component(component_path: Path):
@@ -26,7 +27,7 @@ def generate_directory_tree(source, spec_name):
     component_ctk_api_resources_ctks = component_ctk_api_resources / "api-ctks"
     component_ctk_api_resources_components = component_ctk_api_resources / "components"
     component_implementation_microservice = spec_implementation / "ri-microservices"
-    component_implementation_manifests = spec_implementation / "manifests"
+    #component_implementation_manifests = spec_implementation / "manifests"
 
     return [
         target_spec_dir, 
@@ -38,7 +39,7 @@ def generate_directory_tree(source, spec_name):
         component_ctk_api_resources_ctks, 
         component_ctk_api_resources_components, 
         component_implementation_microservice, 
-        component_implementation_manifests
+        #component_implementation_manifests
     ]
 
 
@@ -58,16 +59,17 @@ def generate_component_index_metadata(component_spec):
     }
 
 def main():
-    SPEC = Path("../../../TMForum-ODA-Component-Specification/1Beta1")
-    BUILD = Path("../../components")
-    CTK_REPO = Path("../../../TMForum_ODA_Component_Conformance/oda-ctk")
-    CTKS = Path("../ctks")
+    SPEC = Path("../../TMForum-ODA-Component-Specification/1Beta1")
+    BUILD = Path("../components")
+    CTK_REPO = Path("../../TMForum_ODA_Component_Conformance/oda-ctk")
+    CTKS = Path("ctks")
     component_specs = load_v1beta1_component(SPEC)
     component_index = {}
     
     for spec in component_specs:
         spec_name = spec["metadata"]["labels"]["oda.tmforum.org/componentName"]
         print("Processing: ", spec_name)
+
         for dir in generate_directory_tree(BUILD, spec_name):
             dir.mkdir(parents=True, exist_ok=True)
 
@@ -89,6 +91,8 @@ def main():
             ctk = list(CTKS.glob(f"{api['id']}*.zip"))[0]
             with zipfile.ZipFile(ctk, "r") as zip_ref:
                 zip_ref.extractall(f"{BUILD}/{spec_name}/component-ctk/resources/api-ctks/")
+
+        helm_chart_generator(spec, f"{BUILD}/{spec_name}/component-reference-implementation")
 
         #shutil.copytree(f"{CTK_REPO}/src", f"{BUILD}/{spec_name}/component-ctk/src", dirs_exist_ok=True)
 
