@@ -1,0 +1,27 @@
+{
+    "url": "http://localhost:8673/tmf-api/geographicAddressManagement/v4/",
+    "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+    "payloads": {
+        "GeographicAddressValidation": {
+            "POST": {
+                "payload": {
+                    "provideAlternative": true,
+                    "submittedGeographicAddress": {
+                        "streetNr": "225",
+                        "streetName": "strathmore",
+                        "streetType": "terrace",
+                        "postcode": "5004",
+                        "locality": "Brighton",
+                        "city": "Brighton",
+                        "stateOrProvince": "SA",
+                        "country": "Australia",
+                        "geographicSubAddress": []
+                    }
+                }
+            }
+        }
+    }
+}

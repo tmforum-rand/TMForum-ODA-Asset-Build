@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "taskFlowSpecification": {
+            "type": "string"
+        },
+        "taskFlowSpecificationRef": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "oneOf": [
+        {
+            "required": [
+                "taskFlowSpecification"
+            ]
+        },
+        {
+            "required": [
+                "taskFlowSpecificationRef"
+            ]
+        }
+    ]
+}
