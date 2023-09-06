@@ -12,6 +12,9 @@ from avionix.kube.core import (
     PersistentVolumeClaim,
     PersistentVolumeClaimSpec,
     Probe,
+    Service,
+    ServicePort,
+    ServiceSpec,
 )
 from avionix.kube.base_objects import KubernetesBaseObject
 
@@ -31,108 +34,151 @@ class Component(KubernetesBaseObject):
 
 
 
-def get_metadata(name):
+def get_metadata(name, **kwargs):
     return ObjectMeta(
-        name="{{.Release.Name}}" + name,
-        labels={"oda.tmforum.org/componentName": "{{.Release.Name}}-{{.Values.component.name}}"}
+        name="{{.Release.Name}}-" + name,
+        labels={
+            "oda.tmforum.org/componentName": "{{.Release.Name}}-{{.Values.component.name}}",
+            **kwargs
+        }
     )
 
 
-mongo_container = Container(
-    name="{{.Release.Name}}-mongodb",
-    image="mongo:5.0.1",
-    ports=[ContainerPort(container_port=27017, name="{{.Release.Name}}-mongodb")],
-    volume_mounts=[
-        VolumeMount(
-            name="{{.Release.Name}}-mongodb-pv-storage",
-            mount_path="/data/db"
-        )
-    ],
-)
-mongo_volume = Volume(
-    name="{{.Release.Name}}-mongodb-pv-storage",
-    persistent_volume_claim={"claim_name": "{{.Release.Name}}-mongodb-pv-claim"}
-)
-MONGO_DEPLOYMENT = Deployment(
-    metadata=get_metadata("-mongodb"),
-    spec=DeploymentSpec(
-        replicas=1, 
-        selector=LabelSelector(
-            match_labels={
-                "impl": "{{.Release.Name}}-mongodb"
-            }
-        ),
-        template=PodTemplateSpec(
-            metadata=ObjectMeta(
-                labels={
-                    "impl": "{{.Release.Name}}-mongodb",
-                    "app": "{{.Release.Name}}-{{.Values.component.name}}",
-                    "version": "mongo-latest"
-                }
-            ),
-            spec=PodSpec(
-                containers=[mongo_container], 
-                volumes=[mongo_volume]
-            )
-        )
+def get_labels(name, version):
+    return {
+        "impl": "{{.Release.Name}}-" + name,
+        "app": "{{.Release.Name}}-{{.Values.component.name}}",
+        "version": version
+    }
+
+def create_selector(name):
+    return LabelSelector(
+        match_labels={
+            "impl": f"{{{{.Release.Name}}}}-{name}"
+        }
     )
-)
-MONGO_PVC = PersistentVolumeClaim(
-    metadata=get_metadata("-mongodb-pv-claim"),
-    spec=PersistentVolumeClaimSpec(
-        access_modes=["ReadWriteOnce"],
-        resources={"requests": {"storage": "3Gi"}},
-    )
-)
 
 
-def create_api_deployment(api):
-    pod_container = Container(
-        name="{{.Release.Name}}" + api["name"],
-        image="tmforumorg/" + api["name"] + ":latest",
+def create_port(port, name):
+    return ContainerPort(
+        container_port=port, 
+        name="{{.Release.Name}}-" + name[:7]
+    )
+
+
+def create_volume_mount(name, mount_path):
+    return VolumeMount(
+        name=f"{{{{.Release.Name}}}}-{name}-pv-storage",
+        mount_path=mount_path#"/data/db"
+    )
+
+def create_volume(name, claim_name):
+    return Volume(
+        name="{{.Release.Name}}-mongodb-pv-storage",
+        persistent_volume_claim={
+            "claim_name": "{{.Release.Name}}-mongodb-pv-claim"
+        }
+    )
+
+def create_startup_probe(path, port):
+    return Probe(
+        http_get={
+            "path": path,
+            "port": port,
+        },
+        initial_delay_seconds=10,
+        period_seconds=5,
+        failure_threshold=30
+    )
+
+def create_container(name, image, **kwargs):
+    return Container(
+        name=f"{{{{.Release.Name}}}}-{name}",
+        image=image,
         env=[
             EnvVar(name="RELEASE_NAME", value="{{.Release.Name}}"),
             EnvVar(name="COMPONENT_NAME", value="{{.Release.Name}}-{{.Values.component.name}}"),
         ],
-        image_pull_policy="Always",
-        ports=[ContainerPort(container_port=api["port"], name="{{.Release.Name}}-" + api["name"][:7])],
-        startup_probe=Probe(
-            http_get={
-                "path": api["path"],
-                "port": api["port"],
-            },
-            initial_delay_seconds=10,
-            period_seconds=5,
-            failure_threshold=30
+        **kwargs
+    )
+
+def create_pvc(storage):
+    return PersistentVolumeClaim(
+        metadata=get_metadata("mongodb-pv-claim"),
+        spec=PersistentVolumeClaimSpec(
+            access_modes=["ReadWriteOnce"],
+            resources={"requests": {"storage": f"{storage}Gi"}},
         )
     )
+
+
+
+
+def create_pod_template_spec(labels, containers=[]):
+    return PodTemplateSpec(
+        metadata=ObjectMeta(
+            labels=labels
+        ),
+        spec=PodSpec(
+            containers=containers, 
+        ),
+    )
+
+
+def create_deployment(name, template, replicas=1):
     return Deployment(
-        metadata=get_metadata(api["name"]),
+        metadata=get_metadata(name),
         spec=DeploymentSpec(
-            replicas=1,
-            selector=LabelSelector(
-                match_labels={
-                    "impl": "{{.Release.Name}}" + api["name"]
-                }
-            ),
-            template=PodTemplateSpec(
-                metadata=ObjectMeta(
-                    labels={
-                        "impl": "{{.Release.Name}}" + api["name"],
-                        "app": "{{.Release.Name}}-{{.Values.component.name}}",
-                        "version": f"api-ri-{api['name']}-latest"
-                    }
-                ),
-                spec=PodSpec(
-                    containers=[pod_container]
-                )
-            )
-
+            replicas=replicas, 
+            template=template,
+            selector=create_selector(name)
         )
     )
 
-def create_api_service(api):
-    pass
+
+def create_svc(name, type, target_port=8080, port=8080):
+    return Service(
+        metadata=get_metadata(name),
+        spec=ServiceSpec(
+            selector=create_selector(name),
+            ports=[ServicePort(
+                port=port, 
+                target_port=target_port, 
+                name="{{.Release.Name}}-" + name[:6])
+            ],
+            type=type
+        )
+    )
+
+
+
+
+
+
+def create_api_deployment(api):
+    container_name = "{{.Release.Name}}" + api["name"]
+    image_name = "tmforumorg/" + api["name"] + ":latest"
+
+
+    container = create_container(container_name, image_name, 
+        image_pull_policy="Always",
+        ports=[create_port(api["port"], api["name"])],
+        startup_probe=create_startup_probe(api["name"], api["port"]),                             
+    )
+
+    pod_template_spec = create_pod_template_spec(
+            get_labels(api["name"], api["version"]), 
+            containers=[container],
+        )
+
+    deployment = create_deployment(
+        api["name"],
+        pod_template_spec,
+        
+    )
+
+    return deployment
+
 
 def extract_apis(apis):
     swaggers = Path("../swaggers")
@@ -144,6 +190,9 @@ def extract_apis(apis):
         if api["id"] in ignore_apis:
             continue
 
+        if "version" not in api:
+            api["version"] = "v4"
+
         swagger_file = list(swaggers.glob(f"{api['id']}*.json"))[0]
         api_obj = {
             "specification" : f"{BASE_SPEC_PATH}/{swagger_file.name}",
@@ -153,6 +202,7 @@ def extract_apis(apis):
             "port": 8080,
             "developerUI": api["developerUI"],
             "name": api["name"],
+            "version": api["version"],
         }
         api_objects.append(api_obj)
     return api_objects
@@ -173,11 +223,11 @@ def generate_resources(spec):
     )
     for api in spec["spec"]["coreFunction"]["exposedAPIs"]:
         resources.append(create_api_deployment(api))
-        #resources.append(create_api_service(api))
+        #resources.append(create_svc(api))
 
     resources.append(component_resource)
-    resources.append(MONGO_DEPLOYMENT)
-    resources.append(MONGO_PVC)
+    #resources.append(MONGO_DEPLOYMENT)
+    #resources.append(MONGO_PVC)
     return resources
 
 
