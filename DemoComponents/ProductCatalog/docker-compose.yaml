@@ -1,0 +1,13 @@
+services:
+  r1-mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+  tmf620:
+    build: productCatalogMicroservice/implementation
+    image: tmforumorg/product-catalog-management_tmf-620:latest
+    environment:
+      - RELEASE_NAME=r1
+      - COMPONENT_NAME=ProductCatalog
+    ports:
+      - "8620:8080"

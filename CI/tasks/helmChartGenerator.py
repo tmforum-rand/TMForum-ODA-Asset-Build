@@ -1,4 +1,3 @@
-from typing import Optional
 from avionix import ChartBuilder, ChartInfo, ObjectMeta
 from avionix.kube.apps import Deployment, DeploymentSpec, PodTemplateSpec
 from avionix.kube.core import (
