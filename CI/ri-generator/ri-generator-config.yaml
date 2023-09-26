@@ -1,0 +1,154 @@
+additionalProperties:
+  localDatabase:    true
+  useMongoDB:       true
+  useKafkaQueue:    true
+
+  artifactId: tmforum-openapi-ri-server
+  serializableModel: "true"
+  dateLibrary: java8
+
+#templateDir: templates
+
+files:
+  dockerfile:
+    templateType: SupportingFiles
+  .dockerignore:
+    templateType: SupportingFiles
+
+  config.js:
+    templateType: SupportingFiles
+  config.json.mustache:
+    destinationFilename: config.json
+    templateType: SupportingFiles
+  index.js:
+    templateType: SupportingFiles
+    
+  services/Service.js:
+    templateType: SupportingFiles
+  services/NotificationHandler.js:
+    templateType: SupportingFiles
+  services/Monitor.js:
+    templateType: SupportingFiles
+    
+  controllers/Controller.js:
+    templateType: SupportingFiles
+
+  utils/entrypoint.js:
+    templateType: SupportingFiles
+  utils/jsonpath.js:
+    templateType: SupportingFiles
+  utils/query.js:
+    templateType: SupportingFiles
+  utils/schema.js:
+    templateType: SupportingFiles
+  
+  utils/swaggerUtils.js:
+    templateType: SupportingFiles
+  utils/responseHeaders.js:
+    templateType: SupportingFiles
+  utils/requestHeaders.js:
+    templateType: SupportingFiles
+ 
+  utils/conformanceUtils.js:
+    templateType: SupportingFiles
+  utils/errorUtils.js:
+    templateType: SupportingFiles
+  utils/fixes.js:
+    templateType: SupportingFiles
+  utils/operations.js:
+    templateType: SupportingFiles
+  utils/operationsUtils.js:
+    templateType: SupportingFiles
+  utils/ruleUtils.js:
+    templateType: SupportingFiles
+  utils/rules.js:
+    templateType: SupportingFiles
+
+  utils/updateJob.js:
+    templateType: SupportingFiles
+  utils/utils.js:
+    templateType: SupportingFiles
+
+  plugins/plugins.mustache:
+    destinationFilename: plugins/plugins.js
+    templateType: SupportingFiles
+  plugins/wait.js:
+    templateType: SupportingFiles
+  plugins/mysql.js:
+    templateType: SupportingFiles
+  plugins/mongo.js:
+    templateType: SupportingFiles
+  plugins/redis.js:
+    templateType: SupportingFiles
+  plugins/kafka.js:
+    templateType: SupportingFiles
+  plugins/elasticSearch.js:
+    templateType: SupportingFiles
+  plugins/postgres.js:
+    templateType: SupportingFiles
+
+  eventServer/index.js:
+    templateType: SupportingFiles
+  eventServer/EventHandler.js:
+    templateType: SupportingFiles
+  eventServer/package.json:
+    templateType: SupportingFiles
+
+  subscriptionServer/index.js:
+    templateType: SupportingFiles
+  subscriptionServer/package.json:
+    templateType: SupportingFiles
+  
+  fileServer/index.js:
+    templateType: SupportingFiles
+
+  jobServer/index.js:
+    templateType: SupportingFiles
+  jobServer/Job.js:
+    templateType: SupportingFiles
+  jobServer/ExportJob.js:
+    templateType: SupportingFiles
+  jobServer/ImportJob.js:
+    templateType: SupportingFiles
+  jobServer/package.json:
+    templateType: SupportingFiles
+
+  utils/json-schema-ref-parser/lib/resolve-external.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/parsers/binary.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/parsers/json.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/parsers/yaml.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/parsers/text.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/util/plugins.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/util/yaml.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/util/url.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/dereference.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/normalize-args.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/options.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/bundle.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/index.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/resolvers/file.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/resolvers/http.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/parse.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/pointer.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/refs.js:
+    templateType: SupportingFiles
+  utils/json-schema-ref-parser/lib/ref.js:
+    templateType: SupportingFiles
+

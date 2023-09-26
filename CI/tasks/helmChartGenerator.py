@@ -97,7 +97,7 @@ def create_startup_probe(path, port):
 def create_container(name, image, **kwargs):
     return Container(
         name=f"{{{{.Release.Name}}}}-{name}",
-        image=image,
+        image=image.lower(),
         env=[
             EnvVar(name="RELEASE_NAME", value="{{.Release.Name}}"),
             EnvVar(name="COMPONENT_NAME",
@@ -140,23 +140,9 @@ def create_deployment(name, template, replicas=1):
     )
 
 
-def create_svc(name, type, target_port=8080, port=8080):
-    return Service(
-        metadata=get_metadata(name),
-        spec=ServiceSpec(
-            selector=create_selector(name),
-            ports=[ServicePort(
-                port=port,
-                target_port=target_port,
-                name="{{.Release.Name}}-" + name[:6])
-            ],
-            type=type
-        )
-    )
-
 
 def create_api_deployment(api):
-    container_name = "{{.Release.Name}}" + api["name"]
+    container_name = api["name"]
     image_name = "tmforumorg/" + api["name"] + ":latest"
 
     container = create_container(
@@ -176,14 +162,13 @@ def create_api_deployment(api):
     deployment = create_deployment(
         api["name"],
         pod_template_spec,
-
     )
 
     return deployment
 
 
 def create_mongo_deployment():
-    Container_name = "{{.Release.Name}}-mongodb"
+    Container_name = "mongodb"
     image_name = "mongo:5.0.1"
 
     container = create_container(
@@ -206,6 +191,21 @@ def create_mongo_deployment():
     )
 
     return deployment
+
+def create_svc(deployment):
+    deployment_port = deployment.spec.template.spec.containers[0].ports[0]
+    port = ServicePort(
+        port=deployment_port.containerPort,
+        target_port=deployment_port.name,
+        name=f"http-{deployment_port.name}"
+    )
+    return Service(
+        metadata=get_metadata(deployment.metadata.name),
+        spec=ServiceSpec(
+            ports=[port],
+            selector=create_selector(deployment.metadata.name)
+        )
+    )
 
 def extract_apis(apis):
     swaggers = Path("../swaggers")
@@ -238,7 +238,7 @@ def extract_apis(apis):
 def generate_resources(spec):
     resources = []
     component_resource = Component(
-        api_version="oda.tmforum.org/v1beta1",
+        api_version="oda.tmforum.org/v1alpha4",
         kind="component",
         metadata=ObjectMeta(
             name="{.Release.Name}}-{{.Values.component.name}}",
@@ -249,8 +249,10 @@ def generate_resources(spec):
         spec=spec["spec"],
     )
     for api in spec["spec"]["coreFunction"]["exposedAPIs"]:
-        resources.append(create_api_deployment(api))
-        # resources.append(create_svc(api))
+        deployment = create_api_deployment(api)
+        resources.append(deployment)
+        svc = create_svc(deployment)
+        resources.append(svc)
 
     resources.append(component_resource)
     resources.append(create_mongo_deployment())

@@ -1,0 +1,20 @@
+'use strict';
+
+const logger = require('../logger');
+
+{{#useMongoDB}}
+const db = require('../plugins/mongoUtils')
+{{/useMongoDB}}
+{{#useMysqlDB}}
+const db = require('../plugins/mysqlUtils')
+{{/useMysqlDB}}
+{{#useRedisQueue}}
+const queue = require('../plugins/redisUtils')
+{{/useRedisQueue}}
+{{#useKafkaQueue}}
+const queue = require('../plugins/kafka')
+{{/useKafkaQueue}}
+
+const listenEvents = (value) => {
+  logger.info("listenEvents:: " + Object.keys(value))
+}

@@ -1,0 +1,79 @@
+{
+  {{#tmfmongo}}
+  {{! Local MongoDB is used}}
+  "db_prot": "mongodb",
+  "db_user": "mongodb",
+  "db_password": "mongodb",
+  "db_host": "mongo",
+  "db_port": 27017,
+  "db_name": "tmf",
+  {{/tmfmongo}}
+
+  {{#tmfpostgres}}
+  {{! Local PostgreSQL is used}}
+  "db_user": "postgres",
+  "db_password": "postgres",
+  "db_host": "postgres",
+  "db_port": 5432,
+  "db_name": "tmf",
+  {{/tmfpostgres}}
+
+  {{^tmfpostgres}}
+  {{^tmfmongo}}
+  {{#localDatabase}}
+  {{! Local MongoDB is used}}
+  "db_prot": "mongodb",
+  "db_user": "mongodb",
+  "db_password": "mongodb",
+  "db_host": "localhost",
+  "db_port": 27017,
+  "db_name": "tmf",
+  {{/localDatabase}}
+  {{/tmfmongo}}
+  {{/tmfpostgres}}
+
+  "alarm_host": "http://localhost:10011",
+  "alarm_url_hal": "/api/",
+
+  "redis_host": "redis",
+  "strict_schema": true,
+
+  "schemaValidationType": "USE_LOCAL_CACHE, USE_OPTIMISTIC_LOCAL, USE_LOCAL_MAPPING, USE_REMOTE_LOOKUP",
+
+  "localSchemaMapping": [
+    { "schema": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceCandidate.yml", 
+      "file": "ServiceCandidate.yml" 
+    },
+    { "schema": "@schemaLocation", 
+      "file": "ServiceCandidate.yml" 
+    }
+  ],
+
+  "localSchemaLocation": "schema",
+
+  "injectListenerPostings": true,
+
+{{#external}}
+  "external": true,
+  "servers" : [ { "url": "{{{external}}}{{{basePathWithoutHost}}}" } ], 
+  "SCHEMA_URL" : "{{{external}}}/openapi",
+{{/external}}
+{{^external}}
+  "notExternal": true,
+  "servers" : [ { "url": "http://localhost:8080{{{basePathWithoutHost}}}" } ], 
+  "SCHEMA_URL" : "http://localhost:8080/openapi",
+{{/external}}
+
+{{#conformance}}
+  "conformance": "{{{conformance}}}",
+{{/conformance}}
+
+{{#tmfid}}
+  "tmfid": "{{{tmfid}}}",
+{{/tmfid}}
+
+  "hub": "EventsSubscription",
+ 
+  "OPENAPI": "/openapi"
+
+}

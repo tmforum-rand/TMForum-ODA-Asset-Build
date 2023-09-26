@@ -1,0 +1,79 @@
+/* eslint-disable no-unused-vars */
+const Service = require('./Service');
+
+{{#operations}}
+{{#operation}}
+  /**
+   {{#summary}}
+   * {{{summary}}}
+   {{/summary}}
+   {{#notes}}
+   * {{{notes}}}
+   {{/notes}}
+   *
+  {{#allParams}}
+   * {{paramName}} {{{dataType}}} {{{description}}}{{^required}} (optional){{/required}}
+  {{/allParams}}
+  {{^returnType}}
+   * no response value expected for this operation
+  {{/returnType}}
+  {{#returnType}}
+   * returns {{{returnType}}}
+  {{/returnType}}
+   **/
+  const {{{operationId}}} =  ( args, context /* {{#allParams}}{{#-first}}{{/-first}}{{paramName}}{{#hasMore}}, {{/hasMore}}{{#-last}} {{/-last}}{{/allParams}} */) =>
+    new Promise(
+      async (resolve) => {
+        context.classname    = "{{{classname}}}";
+        context.operationId  = "{{{operationId}}}";
+        context.method       = "{{{httpMethod}}}";
+        try {
+          {{#isRestfulIndex}}
+          /* matching isRestfulIndex */
+          resolve(Service.index(args, context ));
+          {{/isRestfulIndex}}
+          {{#isRestfulShow}}
+          /* matching isRestfulShow */
+          resolve(Service.show(args, context ));
+          {{/isRestfulShow}}
+          {{#isRestfulCreate}}
+          /* matching isRestfulCreate */
+          resolve(Service.create(args, context ));
+          {{/isRestfulCreate}}
+          {{#isRestfulPatch}}
+          /* matching isRestfulPatch */
+          resolve(Service.patch(args, context ));
+          {{/isRestfulPatch}}
+          {{#isRestfulUpdate}}
+          /* matching isRestfulUpdate */
+          resolve(Service.update(args, context ));
+          {{/isRestfulUpdate}}
+          {{#isRestfulDestroy}}
+          /* matching isRestfulDestroy */
+          resolve(Service.remove(args, context ));
+          {{/isRestfulDestroy}}
+          {{^isRestful}}
+          /* NOT matching isRestful */
+          resolve(Service.serve(args, context ));
+          {{/isRestful}}
+
+        } catch (e) {
+          console.log("{{{operationId}}}: error=" + e);
+          resolve(Service.rejectResponse(
+            e.message || 'Invalid input',
+            e.status || 405,
+          ));
+        }
+      },
+    )
+    
+{{/operation}}
+{{/operations}}
+
+module.exports = {
+  {{#operations}}
+  {{#operation}}
+  {{operationId}},
+  {{/operation}}
+  {{/operations}}
+};

@@ -1,0 +1,27 @@
+'use strict';
+
+const plugins = {}
+{{#useMongoDB}}
+plugins.db = require('./mongo')
+{{/useMongoDB}}
+{{#usePostgresDB}}
+plugins.db = require('./postgres')
+{{/usePostgresDB}}
+{{#useElasticDB}}
+plugins.db = require('./postgres')
+{{/useElasticDB}}
+{{#useMysqlDB}}
+plugins.db = require('./mysql')
+{{/useMysqlDB}}
+{{#useRedisQueue}}
+plugins.queue = require('./redis')
+{{/useRedisQueue}}
+{{#useKafkaQueue}}
+plugins.queue = require('./kafka')
+{{/useKafkaQueue}}
+
+const { waitForPlugins } = require('./wait')
+
+plugins.waitForPlugins = async () => { await waitForPlugins(plugins) }
+
+module.exports = plugins
