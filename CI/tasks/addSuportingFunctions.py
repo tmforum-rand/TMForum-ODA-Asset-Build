@@ -5,6 +5,7 @@ from pathlib import Path
 
 ODA_CANVAS_REPO = Path(__file__).parents[3] / "TMForum-ODA-Canvas-Specification"
 RELEASE_REPO = Path(__file__).parents[3] / "TMForum-ODA-Ready-for-publication" / "specifications"
+SPECS_REPO = Path(__file__).parents[3] / "TMForum-ODA-Component-Specification" / "specifications"
 
 def get_functions():
     functions_folder = Path(ODA_CANVAS_REPO) / "supporting-functions"
@@ -14,9 +15,8 @@ def get_functions():
             yield yaml.safe_load(f)
 
 def get_specifications():
-    specs = Path(__file__).parents[2] / "specifications"
-    print("Specs folder exists: ", specs.exists())
-    for spec_file in specs.glob("TMFC*/**/*.yaml"):
+    print("Specs folder exists: ", SPECS_REPO.exists())
+    for spec_file in SPECS_REPO.glob("TMFC*/**/*.yaml"):
         with spec_file.open() as f:
             yield yaml.safe_load(f), spec_file
 
