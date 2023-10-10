@@ -2,42 +2,13 @@ import yaml
 from pathlib import Path
 
 
-docker_file_content = """
-FROM alpine:3.12.0
-# Create app directory
-WORKDIR /usr/src/app
+ris = Path(__file__).parents[2] / "artifacts" / "ri-microservices"
+REPO = Path(__file__).parents[3] / "TMForum-ODA-Asset-Build"
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
-RUN apk add --update nodejs npm
-
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
-COPY . .
-
-ENV MONGO_URL=mongodb://mongo:27017/tmf
-
-EXPOSE 8080
-CMD [ "node", "index.js" ]
-"""
-
-
-ris = Path("../TMForum-ODA-Asset-Build/reference-implementations")
-
-def compose_service(api: "Path"):
-    docker_file = api / "Dockerfile"
-    if not docker_file.exists():
-        print(f"Warning: {docker_file} does not exist")
-        with open(docker_file, "w+") as file:
-            file.write(docker_file_content)
+def compose_service(api: Path):
     return {
-        "build": str(api),
-        "image": f"tmforum/{api.name[:6].lower()}-reference-implementation:latest-v4.0.0",
+        "build": api.relative_to(REPO).as_posix(),
+        "image": f"tmforumorg/{api.name[:6].lower()}-reference-implementation:latest-v4.0.0",
     }
 
 def get_compose_file(apis):
@@ -47,7 +18,8 @@ def get_compose_file(apis):
     }
 
 def main():
-    apis = [api for api in ris.glob("*")]
+    print(ris.exists())
+    apis = [api for api in ris.glob("*") if api.is_dir()]
     compose_file = get_compose_file(apis)
     with open("docker-compose.yml", "w+") as file:
         yaml.dump(compose_file, file, Dumper=yaml.Dumper, default_flow_style=False)

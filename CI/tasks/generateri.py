@@ -62,8 +62,7 @@ def load_component_spec(component):
 
 def main(args):
     COMPONENT = Path(args[1])
-    OUTPUTS = ARTIFACTS / COMPONENT.parent.name
-    OUTPUTS.mkdir(parents=True, exist_ok=True)
+    ARTIFACTS.mkdir(parents=True, exist_ok=True)
 
     print("Generating APIs")
     print("Found oas cli", RI_GENERATOR.exists())
@@ -73,11 +72,11 @@ def main(args):
     api_generator = APIGenerator()
     component = load_component_spec(COMPONENT)
     for api in component["spec"]["coreFunction"]["exposedAPIs"]:
-        output = OUTPUTS /f"ri-microservices/{api['id']}-{api['name']}"
+        output = ARTIFACTS /f"ri-microservices/{api['id']}-{api['name']}"
         swagger = api["specification"]
         output = api_generator.generateAPI(swagger, output, "nodejs-express-server")
 
-        generation_output = OUTPUTS / "generation-output" / f"{api['id']}-{api['name']}"
+        generation_output = ARTIFACTS / "generation-output" / f"{api['id']}-{api['name']}"
         generation_output.mkdir(parents=True, exist_ok=True)
 
         with (generation_output / "command.txt").open("w+") as f:

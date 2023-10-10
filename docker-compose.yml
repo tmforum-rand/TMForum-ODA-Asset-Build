@@ -1,0 +1,11 @@
+services:
+  tmf620:
+    build: artifacts/ri-microservices/TMF620-productcatalogmanagement
+    image: tmforumorg/tmf620-reference-implementation:latest-v4.0.0
+  tmf688:
+    build: artifacts/ri-microservices/TMF688-Event
+    image: tmforumorg/tmf688-reference-implementation:latest-v4.0.0
+  tmf701:
+    build: artifacts/ri-microservices/TMF701-ProcessFlowManagement
+    image: tmforumorg/tmf701-reference-implementation:latest-v4.0.0
+version: '3.9'
