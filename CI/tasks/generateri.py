@@ -93,4 +93,9 @@ def main(args):
 
 if __name__ == "__main__":
     import sys
-    sys.exit(main(sys.argv))
+
+    try:
+        sys.exit(main(sys.argv))
+    except Exception as e:
+        print(e)
+        sys.exit(0)
