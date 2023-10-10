@@ -69,3 +69,17 @@ jobs:
           docker-compose build --progress plain > artifacts/build-output
           docker-compose push 
 
+      - name: Extract filename from path
+        id: extract
+        run: |
+          FILENAME=$(dirname ${{ matrix.spec }})
+          echo "FILENAME=$FILENAME"
+          echo "::set-output name=filename::$FILENAME"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts-${{ steps.extract.outputs.filename }}
+          path: TMForum-ODA-Asset-Build/artifacts
+          retention-days: 1
+
