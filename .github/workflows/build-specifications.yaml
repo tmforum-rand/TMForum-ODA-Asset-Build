@@ -24,7 +24,7 @@ jobs:
         token: ${{ secrets.DEVOPS_TOKEN }}
         ref: ${{ inputs.ref_name }}
         sparse-checkout: |
-          supporting-functions
+          specifications
           .gitignore
 
     - name: Checkout canvas repository
