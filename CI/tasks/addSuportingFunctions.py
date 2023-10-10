@@ -1,21 +1,22 @@
 import yaml
-import os
-import json
 from pathlib import Path
 
 ODA_CANVAS_REPO = Path(__file__).parents[3] / "TMForum-ODA-Canvas-Specification"
 RELEASE_REPO = Path(__file__).parents[3] / "TMForum-ODA-Ready-for-publication" / "specifications"
 SPECS_REPO = Path(__file__).parents[3] / "TMForum-ODA-Component-Specification" / "specifications"
 
+print("Specs folder exists: ", SPECS_REPO.exists())
+print("Output folder exists: ", RELEASE_REPO.exists())
+print("Functions folder exists: ", ODA_CANVAS_REPO.exists())
+
+
 def get_functions():
     functions_folder = Path(ODA_CANVAS_REPO) / "supporting-functions"
-    print("Functions folder exists: ", functions_folder.exists())
     for function_file in functions_folder.glob("*.yaml"):
         with function_file.open() as f:
             yield yaml.safe_load(f)
 
 def get_specifications():
-    print("Specs folder exists: ", SPECS_REPO.exists())
     for spec_file in SPECS_REPO.glob("TMFC*/**/*.yaml"):
         with spec_file.open() as f:
             yield yaml.safe_load(f), spec_file
@@ -24,11 +25,10 @@ def add_supporting_functions(spec, spec_path, functions):
     print("Adding supporting functions to ", spec_path)
     function_names = ["managementFunction", "securityFunction"]
     for name in function_names:
-        spec[name] = functions[name]
+        spec["spec"][name] = functions[name]
 
     OUTPUT_FOLDER = RELEASE_REPO / spec_path.parent.name
     OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
-    print("Output folder exists: ", OUTPUT_FOLDER.exists())
     with (OUTPUT_FOLDER / spec_path.name).open("w+") as f:
         yaml.safe_dump(spec, f)
 
