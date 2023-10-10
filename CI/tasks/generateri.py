@@ -34,7 +34,7 @@ class APIGenerator:
                 "exitCode": cmd_output.returncode,
             }
         except subprocess.CalledProcessError as e:
-            print(e)
+            #print(e)
             output = {
                 "command": " ".join(command),
                 "stdout": "",
