@@ -1,0 +1,43 @@
+name: Build reference implementations
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref_name:
+        description: 'Branch name'
+        required: true
+        default: 'v1beta2'
+jobs:
+  generate-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      spec: ${{ steps.generate-matrix.outputs.spec }}
+    steps:
+    - name: Checkout build repository
+      uses: actions/checkout@v4
+      with:
+        path: TMForum-ODA-Asset-Build
+
+    - name: Checkout release repository
+      uses: actions/checkout@v4
+      with:
+        repository: tmforum-rand/TMForum-ODA-Ready-for-publication
+        path: TMForum-ODA-Ready-for-publication
+        token: ${{ secrets.DEVOPS_TOKEN }}
+        ref: ${{ inputs.ref_name }}
+
+    - name: Generate matrix
+      id: generate-matrix
+      run: python3 TMForum-ODA-Asset-Build/CI/tasks/generate_matrix.py >> "$GITHUB_OUTPUT"
+
+  matrix-build:
+    runs-on: ubuntu-latest
+    needs: generate-matrix
+    strategy:
+        matrix:
+            spec: ${{fromJson(needs.generate-matrix.outputs.spec)}}
+    steps:
+      - name: Checkout build repository
+        uses: actions/checkout@v4
+        with:
+          path: TMForum-ODA-Asset-Build
