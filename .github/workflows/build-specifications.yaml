@@ -1,12 +1,12 @@
 name: build-component-specifications
 
 on:
-    workflow_dispatch:
-        inputs:
-            ref_name:
-                description: 'Branch name'
-                required: true
-                default: 'v1beta2'
+  workflow_dispatch:
+    inputs:
+      ref_name:
+        description: 'Branch name'
+        required: true
+        default: 'v1beta2'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,6 +23,9 @@ jobs:
         repository: tmforum-rand/TMForum-ODA-Component-Specification
         token: ${{ secrets.DEVOPS_TOKEN }}
         ref: ${{ inputs.ref_name }}
+        sparse-checkout: |
+          supporting-functions
+          .gitignore
 
     - name: Checkout canvas repository
       uses: actions/checkout@v4
@@ -31,6 +34,10 @@ jobs:
         path: TMForum-ODA-Canvas-Specification
         token: ${{ secrets.DEVOPS_TOKEN }}
         ref: ${{ inputs.ref_name }}
+        sparse-checkout: |
+          supporting-functions
+          .gitignore
+        
 
     - name: Checkout release repository
       uses: actions/checkout@v4
