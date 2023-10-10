@@ -72,9 +72,8 @@ jobs:
       - name: Extract filename from path
         id: extract
         run: |
-          FILENAME=$(dirname ${{ matrix.spec }})
-          echo "FILENAME=$FILENAME"
-          echo "::set-output name=filename::$FILENAME"
+          FILENAME=$(basename $(dirname ${{ matrix.spec }}))
+          echo "filename=$FILENAME" >> "$GITHUB_OUTPUT"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
