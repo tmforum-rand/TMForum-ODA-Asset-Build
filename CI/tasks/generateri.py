@@ -97,5 +97,6 @@ if __name__ == "__main__":
     try:
         sys.exit(main(sys.argv))
     except Exception as e:
+        print("Failed to generate APIs")
         print(e)
         sys.exit(0)
