@@ -36,6 +36,7 @@ jobs:
     strategy:
         matrix:
             spec: ${{fromJson(needs.generate-matrix.outputs.spec)}}
+        fail-fast: false
     steps:
       - name: Checkout build repository
         uses: actions/checkout@v4

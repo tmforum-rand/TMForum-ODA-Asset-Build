@@ -93,10 +93,4 @@ def main(args):
 
 if __name__ == "__main__":
     import sys
-
-    try:
-        sys.exit(main(sys.argv))
-    except Exception as e:
-        print("Failed to generate APIs")
-        print(e)
-        sys.exit(0)
+    sys.exit(main(sys.argv))
