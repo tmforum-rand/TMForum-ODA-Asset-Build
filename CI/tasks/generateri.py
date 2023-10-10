@@ -4,8 +4,10 @@ import subprocess
 from pathlib import Path
 
 
-COMPONENTS = Path(__file__).parent.parent.parent / "components"
-RI_GENERATOR = Path(__file__).parent.parent / "ri-generator" 
+PUBLICATION_REPO = Path(__file__).parents[3] / "TMForum-ODA-Ready-for-publication"
+RI_GENERATOR = Path(__file__).parents[1] / "ri-generator" 
+ARTIFACTS = Path(__file__).parents[2] / "artifacts"
+
 
 class APIGenerator:
     def __init__(self) -> None:
@@ -15,18 +17,36 @@ class APIGenerator:
 
     def generateAPI(self, swagger, output, language):
         command = [
-            "java", "-jar", self.jar,
+            "java", "-jar", str(self.jar),
             "generate", "-i", swagger,
             "-g", language,
-            "-o", output,
-            "-c", self.config,
-            "-t", self.templates,
+            "-o", str(output),
+            "-c", str(self.config),
+            "-t", str(self.templates),
         ]
 
         try:
-            subprocess.run(command, check=True)
+            cmd_output = subprocess.run(command, check=True, capture_output=True, text=True)
+            return {
+                "command": " ".join(command),
+                "stdout": cmd_output.stdout,
+                "stderr": cmd_output.stderr,
+                "exitCode": cmd_output.returncode,
+            }
         except subprocess.CalledProcessError as e:
             print(e)
+            output = {
+                "command": " ".join(command),
+                "stdout": "",
+                "stderr": "",
+                "exitCode": e.returncode,
+            }
+            if e.output:
+                output["stdout"] = e.output
+            if e.stderr:
+                output["stderr"] = e.stderr
+            return output
+                
 
 def glob_component_specs(components):
     for component in components.glob("*/specification/**/TMFC*.yaml"):
@@ -34,29 +54,43 @@ def glob_component_specs(components):
 
 
 def load_component_spec(component):
-    with component.open() as f:
+    with (PUBLICATION_REPO / component).open() as f:
         spec = yaml.safe_load(f)
         return spec
     
-def get_component_root(component):
-    return component.parent.parent
 
-def main():
+
+def main(args):
+    COMPONENT = Path(args[1])
+    OUTPUTS = ARTIFACTS / COMPONENT.parent.name
+    OUTPUTS.mkdir(parents=True, exist_ok=True)
+
     print("Generating APIs")
-    print("Found components", COMPONENTS.exists())
     print("Found oas cli", RI_GENERATOR.exists())
+    print("Found component", (PUBLICATION_REPO / COMPONENT).exists())
 
 
     api_generator = APIGenerator()
-    for comp in glob_component_specs(COMPONENTS):
-        root = get_component_root(comp)
-        component = load_component_spec(comp)
-        for api in component["coreFunction"]["exposedAPIs"]:
-            output = root / f"component-reference-implementation/ri-microservice/{api['id']}-{api['name']}"
-            swagger = api["specification"]
-            api_generator.generateAPI(swagger, output, "nodejs-express-server")
+    component = load_component_spec(COMPONENT)
+    for api in component["spec"]["coreFunction"]["exposedAPIs"]:
+        output = OUTPUTS /f"ri-microservices/{api['id']}-{api['name']}"
+        swagger = api["specification"]
+        output = api_generator.generateAPI(swagger, output, "nodejs-express-server")
+
+        generation_output = OUTPUTS / "generation-output" / f"{api['id']}-{api['name']}"
+        generation_output.mkdir(parents=True, exist_ok=True)
+
+        with (generation_output / "command.txt").open("w+") as f:
+            f.write(output["command"])
+
+        with (generation_output / "stdout.txt").open("w+") as f:
+            f.write(output["stdout"])
+
+        with (generation_output / "stderr.txt").open("w+") as f:
+            f.write(output["stderr"])
+
     return 0
 
 if __name__ == "__main__":
     import sys
-    sys.exit(main())
+    sys.exit(main(sys.argv))
