@@ -71,6 +71,7 @@ jobs:
 
       - name: Extract filename from path
         id: extract
+        if: always()
         run: |
           FILENAME=$(basename $(dirname ${{ matrix.spec }}))
           echo "filename=$FILENAME" >> "$GITHUB_OUTPUT"
