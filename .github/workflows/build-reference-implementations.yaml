@@ -66,8 +66,8 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/TMForum-ODA-Asset-Build
           python3 CI/tasks/generateCompose.py 
-          docker-compose build --progress plain > artifacts/build-output
-          docker-compose push 
+          #docker-compose build --progress plain > artifacts/build-output
+          #docker-compose push 
 
       - name: Extract filename from path
         id: extract
