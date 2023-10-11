@@ -71,10 +71,13 @@ def main(args):
 
     api_generator = APIGenerator()
     component = load_component_spec(COMPONENT)
+    outputs = []
+
     for api in component["spec"]["coreFunction"]["exposedAPIs"]:
         output = ARTIFACTS /f"ri-microservices/{api['id']}-{api['name']}"
         swagger = api["specification"]
         output = api_generator.generateAPI(swagger, output, "nodejs-express-server")
+        outputs.append(output)
 
         generation_output = ARTIFACTS / "generation-output" / f"{api['id']}-{api['name']}"
         generation_output.mkdir(parents=True, exist_ok=True)
@@ -88,6 +91,10 @@ def main(args):
         with (generation_output / "stderr.txt").open("w+") as f:
             f.write(output["stderr"])
 
+    for output in outputs:
+        if output["exitCode"] != 0:
+            print("Generation failed")
+            return 1
     return 0
 
 if __name__ == "__main__":
