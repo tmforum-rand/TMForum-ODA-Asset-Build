@@ -11,7 +11,7 @@ Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swag
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF679-ProductOfferingQualification-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF633-ServiceCatalog-v4.0.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF657-ServiceQuality-v4.0.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF657-ServiceQuality-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF699-Sales-v4.0.0.swagger.json
@@ -25,18 +25,18 @@ Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swag
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF642-Alarm-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF645-ServiceQualification-v4.0.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF645-ServiceQualification-v4.0.0.swagger.json
 Failed to processTMFC011-ResourceOrderManagement.yaml list indices must be integers or slices, not str
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF628-Performance-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF628-Performance-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF642-Alarm-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF620-ProductCatalog-v4.0.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF620-ProductCatalog-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF634_resourceCatalog-v4.1.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF634-ResourceCatalog-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF688-Event-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF637-ProductInventory-v4.0.0.swagger.json
@@ -44,7 +44,7 @@ Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swag
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF688-Event-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF622-ProductOrder-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF648-Quote-v4.0.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF663-ShoppingCart-v2.0.4.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF663-ShoppingCart-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF688-Event-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF688-Event-v4.0.0.swagger.json
@@ -53,10 +53,10 @@ Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swag
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF629-Customer-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF672-UserRoleAndPermission-v4.0.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF672-PartyRole-v4.0.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF672-UserRolePermission-v4.0.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF672-UserRolePermission-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF638-serviceInventory-v4.0.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF638-ServiceInventory-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF688-Event-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
@@ -64,7 +64,7 @@ Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swag
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF688-Event-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF673-GeographicAddress-v4.0.1.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF674-GeographicSite-v4.0.0.swagger.json
-Failed to fetch 404 Client Error: Not Found for url: https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF675-GeographicLocation-v4.0.0.swagger.json
+Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF675-GeographicLocation-v4.0.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF701-ProcessFlow-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF671-Promotion-v4.1.0.swagger.json
 Successfully fetched https://tmforum-rand.github.io/TMForum-ODA-Asset-Build/swaggers/TMF670-PaymentMethod-v4.0.0.swagger.json
