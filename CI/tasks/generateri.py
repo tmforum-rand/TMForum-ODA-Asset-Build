@@ -80,7 +80,7 @@ def main(args):
         output = ARTIFACTS /f"ri-microservices/"
         swagger = api["specification"]
         
-        print("::group::{api_name}")
+        print(f"::group::{api_name}")
         output = api_generator.generateAPI(swagger, output, "nodejs-express-server")
         if output["exitCode"] != 0:
             print("Generation failed check output artifacts for more info")
