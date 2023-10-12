@@ -64,9 +64,11 @@ def main(args):
     COMPONENT = Path(args[1])
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
 
-    print("Generating APIs")
-    print("Found oas cli", RI_GENERATOR.exists())
-    print("Found component", (PUBLICATION_REPO / COMPONENT).exists())
+    print("::group::Setup info")
+    print("OAS cli exists", RI_GENERATOR.exists())
+    print("Spec path exists", (PUBLICATION_REPO / COMPONENT).exists())
+    print("Artifacts exists", ARTIFACTS.exists())
+    print("::endgroup::")
 
 
     api_generator = APIGenerator()
@@ -74,13 +76,18 @@ def main(args):
     outputs = []
 
     for api in component["spec"]["coreFunction"]["exposedAPIs"]:
-        output = ARTIFACTS /f"ri-microservices/{api['id']}-{api['name']}"
+        api_name = f"{api['id']}-{api['name']}"
+        output = ARTIFACTS /f"ri-microservices/"
         swagger = api["specification"]
+        
+        print("::group::{api_name}")
         output = api_generator.generateAPI(swagger, output, "nodejs-express-server")
+        if output["exitCode"] != 0:
+            print("Generation failed check output artifacts for more info")
         outputs.append(output)
-
-        generation_output = ARTIFACTS / "generation-output" / f"{api['id']}-{api['name']}"
+        generation_output = ARTIFACTS / "generation-output" / f"{api_name}"
         generation_output.mkdir(parents=True, exist_ok=True)
+        print("::endgroup::")
 
         with (generation_output / "command.txt").open("w+") as f:
             f.write(output["command"])
