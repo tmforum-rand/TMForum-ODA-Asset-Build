@@ -16,6 +16,7 @@ def test_url(url):
     try:
         req = requests.get(url)
         req.raise_for_status()
+        print(f"Successfully fetched {url}")
     except Exception as e:
         print(f"Failed to fetch", e)
         return False
@@ -25,6 +26,8 @@ def replace_oas_urls(component):
     for function in FUNCTIONS:
         for api in component["spec"][function]["exposedAPIs"]:
             file_name = api["specification"].split("/")[-1]
+            file_name = file_name.replace("Management", "")
+
             api["specification"] = f"{GH_PAGES}/{file_name}"
             test_url(api["specification"])
 
