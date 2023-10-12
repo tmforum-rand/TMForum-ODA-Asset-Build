@@ -65,6 +65,10 @@ jobs:
           FILENAME=$(basename $(dirname ${{ matrix.spec }}))
           echo "filename=$FILENAME" >> "$GITHUB_OUTPUT"
 
+      - name: install python dependencies
+        run: |
+          pip3 install -r TMForum-ODA-Asset-Build/CI/tasks/requirements.txt
+
       - name: Build ris
         env:
           COMPONENT_FILE: ${{ matrix.spec }}
