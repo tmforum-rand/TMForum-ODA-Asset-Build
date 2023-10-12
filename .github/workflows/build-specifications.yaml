@@ -1,4 +1,4 @@
-name: build-component-specifications
+name: build ODA specs
 
 on:
   workflow_dispatch:
