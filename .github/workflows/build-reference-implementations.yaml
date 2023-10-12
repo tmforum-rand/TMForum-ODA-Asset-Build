@@ -1,4 +1,4 @@
-name: Build reference implementations
+name: Build resources (RI, Helm, CTK)
 
 on:
   workflow_dispatch:
