@@ -84,6 +84,8 @@ def main(args):
         output = api_generator.generateAPI(swagger, output, "nodejs-express-server")
         if output["exitCode"] != 0:
             print("Generation failed check output artifacts for more info")
+        else:
+            print("Generation succeeded")
         outputs.append(output)
         generation_output = ARTIFACTS / "generation-output" / f"{api_name}"
         generation_output.mkdir(parents=True, exist_ok=True)
