@@ -51,6 +51,13 @@ jobs:
           token: ${{ secrets.DEVOPS_TOKEN }}
           ref: ${{ inputs.ref_name }}
 
+      - name: Checkout release repository
+        uses: actions/checkout@v4
+        with:
+          repository: tmforum-rand/oda-helm-charts
+          path: oda-helm-charts
+          token: ${{ secrets.DEVOPS_TOKEN }}
+
       - name: Extract filename from path
         id: extract
         if: always()
@@ -74,7 +81,25 @@ jobs:
           cd $GITHUB_WORKSPACE/TMForum-ODA-Asset-Build
           python3 CI/tasks/generateCompose.py 
           #docker-compose build --progress plain > artifacts/build-output
-          #docker-compose push 
+          #docker-compose push
+
+      - name: Generate helm charts
+        env:
+          COMPONENT_FILE: ${{ matrix.spec }}
+        run: |
+          rm -rf $GITHUB_WORKSPACE/oda-helm-charts/charts/* 
+          python3 TMForum-ODA-Asset-Build/CI/tasks/generateComponentHelmchart.py $COMPONENT_FILE
+          cd $GITHUB_WORKSPACE/oda-helm-charts
+
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git add .
+            git commit -m "Update from GitHub Actions"
+            git push
+          else
+            echo "No changes to commit"
+          fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
