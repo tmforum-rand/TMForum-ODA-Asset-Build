@@ -77,7 +77,7 @@ def main(args):
 
     for api in component["spec"]["coreFunction"]["exposedAPIs"]:
         api_name = f"{api['id']}-{api['name']}"
-        output = ARTIFACTS /f"ri-microservices/"
+        output = ARTIFACTS /f"ri-microservices/{api_name}"
         swagger = api["specification"]
         
         print(f"::group::{api_name}")

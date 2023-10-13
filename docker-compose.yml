@@ -1,7 +1,18 @@
 services:
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - db_data:/data/db
   tmf620:
     build: artifacts/ri-microservices/TMF620-productcatalogmanagement
     image: tmforumorg/tmf620-reference-implementation:latest-v4.0.0
+    environment:
+      - MONGO_SERVICE_HOST=mongo
+    ports:
+      - 8620:8080
   tmf688:
     build: artifacts/ri-microservices/TMF688-Event
     image: tmforumorg/tmf688-reference-implementation:latest-v4.0.0
@@ -9,3 +20,5 @@ services:
     build: artifacts/ri-microservices/TMF701-ProcessFlowManagement
     image: tmforumorg/tmf701-reference-implementation:latest-v4.0.0
 version: '3.9'
+volumes:
+  db_data: {}
