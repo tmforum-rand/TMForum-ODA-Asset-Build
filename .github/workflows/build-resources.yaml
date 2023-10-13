@@ -93,17 +93,6 @@ jobs:
         run: |
           rm -rf $GITHUB_WORKSPACE/oda-helm-charts/charts/* 
           python3 TMForum-ODA-Asset-Build/CI/tasks/generateComponentHelmchart.py $COMPONENT_FILE
-          cd $GITHUB_WORKSPACE/oda-helm-charts
-
-          if [[ `git status --porcelain` ]]; then
-            git config user.name "GitHub Actions"
-            git config user.email "actions@github.com"
-            git add .
-            git commit -m "Update from GitHub Actions"
-            git push
-          else
-            echo "No changes to commit"
-          fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
