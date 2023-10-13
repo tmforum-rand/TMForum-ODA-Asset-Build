@@ -51,13 +51,6 @@ jobs:
           token: ${{ secrets.DEVOPS_TOKEN }}
           ref: ${{ inputs.ref_name }}
 
-      - name: Checkout release repository
-        uses: actions/checkout@v4
-        with:
-          repository: tmforum-rand/oda-helm-charts
-          path: oda-helm-charts
-          token: ${{ secrets.DEVOPS_TOKEN }}
-
       - name: Extract filename from path
         id: extract
         if: always()
@@ -91,7 +84,6 @@ jobs:
         env:
           COMPONENT_FILE: ${{ matrix.spec }}
         run: |
-          rm -rf $GITHUB_WORKSPACE/oda-helm-charts/charts/* 
           python3 TMForum-ODA-Asset-Build/CI/tasks/generateComponentHelmchart.py $COMPONENT_FILE
 
       - name: Upload build artifacts
