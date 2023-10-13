@@ -23,8 +23,8 @@ from avionix.kube.base_objects import KubernetesBaseObject
 
 
 RELEASE_REPO = Path(__file__).parents[3] / "TMForum-ODA-Ready-for-publication"
-HELM_REPO = Path(__file__).parents[3] / "oda-helm-charts" / "charts"
-HELM_REPO.mkdir(parents=True, exist_ok=True)
+HELM_REPO = Path(__file__).parents[2] / "artifacts" / "helm"
+
 
 class Component(KubernetesBaseObject):
     def __init__(
@@ -253,19 +253,18 @@ def generate_resources(spec):
 
 def main(args):
     component_yaml = RELEASE_REPO / args[1]
-    output_dir = HELM_REPO / component_yaml.name[:7]
     with component_yaml.open("r") as f:
         comp = yaml.safe_load(f)
 
     builder = ChartBuilder(
         ChartInfo(
             api_version="3.2.4", 
-            name="component_helmchart",
+            name=component_yaml.stem.lower(),
             version="0.1.0", 
             app_version="v1beta1"
         ),
         generate_resources(comp),
-        str(output_dir),
+        str(HELM_REPO),
     )
     generated_dir = builder.generate_chart()
     return 0

@@ -50,17 +50,4 @@ jobs:
     - name: Run build script
       run: cd $GITHUB_WORKSPACE/TMForum-ODA-Asset-Build && python3 CI/tasks/addSuportingFunctions.py 
 
-    - name: Commit and push changes
-      run: |
-        cd $GITHUB_WORKSPACE/TMForum-ODA-Ready-for-publication
-
-        # Check for changes
-        if [[ `git status --porcelain` ]]; then
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Update from GitHub Actions"
-          git push
-        else
-          echo "No changes to commit"
-        fi
+    
