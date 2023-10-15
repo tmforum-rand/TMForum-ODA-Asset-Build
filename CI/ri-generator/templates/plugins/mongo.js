@@ -16,8 +16,8 @@ const DATABASE = config?.DATABASE || "tmf"
 
 var mongodb 
 
-const host = process.env.dbhost || config.db_host || localhost
-const port = process.env.dbport || config.db_port || 27017
+const host = process.env.dbhost || process.env.MONGO_SERVICE_HOST || config.db_host || localhost
+const port = process.env.dbport || process.env.MONGO_SERVICE_HOST || config.db_port || 27017
 
 async function connect() {
   try {

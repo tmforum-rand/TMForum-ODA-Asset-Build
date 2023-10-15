@@ -13,9 +13,22 @@ function processAssignmentRules(operation, doc) {
 
   return new Promise(function(resolve, reject) {
 
-    //
-    // TMF620_Product_Catalog
-    //
+    if (operation === 'tMF620createCatalog'){
+      //doc.lifecycleStatus= "Active";
+    }
+
+    if (operation === "createProductSpecification") {
+      doc.lifecycleStatus = "Active";
+    }
+
+    if (operation === "createProductOffering") {
+      doc.lifecycleStatus = "Active";
+    }
+    
+
+    if (operation === "createProductOfferingPrice") {
+      doc.lifecycleStatus = "Active";
+    }
 
     if (operation === 'tMF620createCatalog'){
       //doc.lifecycleStatus= "Active"

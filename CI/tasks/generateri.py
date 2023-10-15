@@ -74,8 +74,12 @@ def main(args):
     api_generator = APIGenerator()
     component = load_component_spec(COMPONENT)
     outputs = []
+    ignore_apis = ["TMF688"]
+
 
     for api in component["spec"]["coreFunction"]["exposedAPIs"]:
+        if api["id"] in ignore_apis:
+            continue
         api_name = f"{api['id']}-{api['name']}"
         output = ARTIFACTS /f"ri-microservices/{api_name}"
         swagger = api["specification"]

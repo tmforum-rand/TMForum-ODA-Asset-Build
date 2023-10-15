@@ -11,14 +11,33 @@ services:
     image: tmforumorg/tmf620-reference-implementation:latest-v4.0.0
     environment:
       - MONGO_SERVICE_HOST=mongo
+      - COMPONENT_NAME=r1-tmf620
     ports:
       - 8620:8080
   tmf688:
     build: artifacts/ri-microservices/TMF688-Event
     image: tmforumorg/tmf688-reference-implementation:latest-v4.0.0
+    environment:
+      - MONGO_SERVICE_HOST=mongo
+      - COMPONENT_NAME=r1-tmf688
+    ports:
+      - 8688:8080
   tmf701:
     build: artifacts/ri-microservices/TMF701-ProcessFlowManagement
     image: tmforumorg/tmf701-reference-implementation:latest-v4.0.0
+    environment:
+      - MONGO_SERVICE_HOST=mongo
+      - COMPONENT_NAME=r1-tmf701
+    ports:
+      - 8701:8080
+  tmf671:
+    build: artifacts/ri-microservices/TMF671-PromotionManagement
+    image: tmforumorg/tmf671-promotionmanagement:latest-v4.0.0
+    environment:
+      - MONGO_SERVICE_HOST=mongo
+      - COMPONENT_NAME=r1-tmf671
+    ports:
+      - 8671:8080
 version: '3.9'
 volumes:
   db_data: {}

@@ -65,6 +65,8 @@ class Service {
 
     query = this.addMandatoryFilterFields(query,resourceType)
 
+    this.getCompositeId(query)
+
     logger.debug("index:: resourceType=" + resourceType + " query=" + JSON.stringify(query))
 
     try {
@@ -149,6 +151,8 @@ class Service {
     const id = this.getSingleKey(args,resourceType)
 
     query.criteria.id = id
+
+    this.getCompositeId(query)
 
     logger.info("show:: resourceType=" + resourceType + " query=" + JSON.stringify(query))
 
@@ -383,6 +387,19 @@ class Service {
     throw Service.rejectResponse(internalError)
 
   }
+
+
+  static getCompositeId(query) {
+    const sub_resources = ["processFlowId"]
+
+    sub_resources.forEach(subField => {
+      if(query.criteria[subField]){
+        delete query.criteria[subField]
+      }
+    })
+
+  }
+
 
   static getSingleKey(obj,resourceType) {
     let typedef = getTypeDefinition(resourceType)
