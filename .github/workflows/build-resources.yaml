@@ -86,6 +86,12 @@ jobs:
         run: |
           python3 TMForum-ODA-Asset-Build/CI/tasks/generateComponentHelmchart.py $COMPONENT_FILE
 
+      - name: Generate ctks
+        env:
+          COMPONENT_FILE: ${{ matrix.spec }}
+        run: |
+          python3 TMForum-ODA-Asset-Build/CI/tasks/buildCTK.py $COMPONENT_FILE
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         if: always()
