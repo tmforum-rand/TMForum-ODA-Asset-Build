@@ -11,7 +11,7 @@ print("Functions folder exists: ", ODA_CANVAS_REPO.exists())
 
 
 def get_functions():
-    functions_folder = Path(ODA_CANVAS_REPO) / "supporting-functions"
+    functions_folder = Path(ODA_CANVAS_REPO) / "src" / "supporting-functions"
     for function_file in functions_folder.glob("*.yaml"):
         with function_file.open() as f:
             yield yaml.safe_load(f)
