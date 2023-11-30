@@ -1,6 +1,0 @@
-applications:
-- name: general-test-artifact-management-api
-  host: 
-  memory: 640M
-  services:
-    - tmf-compose-for-mongodb

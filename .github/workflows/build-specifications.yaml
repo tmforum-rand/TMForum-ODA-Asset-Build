@@ -1,4 +1,4 @@
-name: build ODA specs
+name: Build ODA specs
 
 on:
   workflow_dispatch:

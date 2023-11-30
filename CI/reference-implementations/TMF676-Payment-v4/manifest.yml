@@ -1,5 +1,0 @@
-applications:
-- host: null
-  memory: 256M
-  name: TMF676-Payment-v4
-  services: [tmf-compose-for-mongodb]
