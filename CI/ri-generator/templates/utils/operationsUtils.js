@@ -3,19 +3,19 @@
 const uuid = require('uuid')
 const fs = require('fs')
 
-const swaggerUtils = require('../utils/swaggerUtils')
+const swaggerUtils = require('./swaggerUtils.js')
 
-const plugins = require('../plugins/plugins')
+const plugins = require('../plugins/plugins.js')
 
-const logger = require('../logger')
+const logger = require('../logger.js')
 
-const config = require('../config')
+const config = require('../config.js')
 
 const $RefParser = require('./json-schema-ref-parser/lib/index.js')
 
 const schemaParser = new $RefParser()
 
-const {TError, TErrorEnum} = require('../utils/errorUtils');
+const {TError, TErrorEnum} = require('./errorUtils.js');
 
 function traverse(req,schema,obj,operations,key,path) {
   operations = operations || [];

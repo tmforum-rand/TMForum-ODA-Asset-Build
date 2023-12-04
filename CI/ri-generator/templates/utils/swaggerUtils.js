@@ -6,7 +6,7 @@ const jsyaml = require('js-yaml')
 const config = require('../config')
 const logger = require('../logger')
 
-const { TError, TErrorEnum } = require('../utils/errorUtils')
+const { TError, TErrorEnum } = require('./errorUtils')
 
 var spec
 var swaggerDoc

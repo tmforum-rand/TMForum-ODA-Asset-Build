@@ -2,11 +2,11 @@ import yaml
 from pathlib import Path
 
 ODA_CANVAS_REPO = Path(__file__).parents[3] / "TMForum-ODA-Canvas-Specification"
-RELEASE_REPO = Path(__file__).parents[3] / "TMForum-ODA-Ready-for-publication" / "specifications"
+CONFORMANCE_REPO = Path(__file__).parents[3] / "TMForum_ODA_Component_Conformance" / "components"
 SPECS_REPO = Path(__file__).parents[3] / "TMForum-ODA-Component-Specification" / "specifications"
 
 print("Specs folder exists: ", SPECS_REPO.exists())
-print("Output folder exists: ", RELEASE_REPO.exists())
+print("Output folder exists: ", CONFORMANCE_REPO.exists())
 print("Functions folder exists: ", ODA_CANVAS_REPO.exists())
 
 
@@ -27,7 +27,7 @@ def add_supporting_functions(spec, spec_path, functions):
     for name in function_names:
         spec["spec"][name] = functions[name]
 
-    OUTPUT_FOLDER = RELEASE_REPO / spec_path.parent.name
+    OUTPUT_FOLDER = CONFORMANCE_REPO / spec_path.parent.name
     OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
     with (OUTPUT_FOLDER / spec_path.name).open("w+") as f:
         yaml.safe_dump(spec, f)

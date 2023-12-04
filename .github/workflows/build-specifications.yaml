@@ -42,17 +42,17 @@ jobs:
     - name: Checkout release repository
       uses: actions/checkout@v4
       with:
-        repository: tmforum-rand/TMForum-ODA-Ready-for-publication
-        path: TMForum-ODA-Ready-for-publication
+        repository: tmforum-rand/TMForum_ODA_Component_Conformance
+        path: TMForum_ODA_Component_Conformance
         token: ${{ secrets.DEVOPS_TOKEN }}
         ref: ${{ inputs.ref_name }}
 
     - name: Run build script
-      run: cd $GITHUB_WORKSPACE/TMForum-ODA-Asset-Build && python3 CI/tasks/addSuportingFunctions.py 
+      run: cd $GITHUB_WORKSPACE/TMForum-ODA-Asset-Build && python3 ci/tasks/addSuportingFunctions.py 
 
     - name: Commit and push changes
       run: |
-        cd $GITHUB_WORKSPACE/TMForum-ODA-Ready-for-publication
+        cd $GITHUB_WORKSPACE/TMForum_ODA_Component_Conformance
 
         # Check for changes
         if [[ `git status --porcelain` ]]; then

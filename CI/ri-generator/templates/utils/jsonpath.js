@@ -3,7 +3,7 @@
 const jp = require('jsonpath');
 
 const logger = require('../logger');
-const { TError, TErrorEnum } = require('../utils/errorUtils');
+const { TError, TErrorEnum } = require('./errorUtils');
 
 const STRING = 'string_literal'
 const UNION = 'union'
